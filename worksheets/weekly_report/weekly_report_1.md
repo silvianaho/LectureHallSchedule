@@ -11,11 +11,11 @@ This report is for you to document the progres of your project. You should also 
 ## What do I plan to do next week
 
 -   get started with the assignment, setting up tables
--   Worked on...
--   Changed....
+-   have a picture of how to do the assignment
+-   work on backend
 
 ## Additional Thoughts
 
 -   Still a little confused about git
--   
+-   no clue for assignment yet
 -   Lecturer is awesome. yes, awesome
