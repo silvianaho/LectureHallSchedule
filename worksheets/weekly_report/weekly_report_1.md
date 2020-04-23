@@ -4,18 +4,18 @@ This report is for you to document the progres of your project. You should also 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Setting up github
+-   decided our team and project for CA
+-   Get to know what is git
 
 ## What do I plan to do next week
 
--   Worked on...
+-   get started with the assignment, setting up tables
 -   Worked on...
 -   Changed....
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   Still a little confused about git
+-   
+-   Lecturer is awesome. yes, awesome
