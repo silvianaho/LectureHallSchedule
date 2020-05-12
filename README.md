@@ -20,7 +20,7 @@
 
 ## Sample wireframes
 
-![sample-wireframe-data-viewer](../assets/Capture.PNG)
+![wireframe-data-viewer](../assets/Capture.PNG)
 
 ###### Data Viewer
 
