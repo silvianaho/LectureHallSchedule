@@ -1,0 +1,31 @@
+POST http://localhost:3000/basic/insert HTTP/1.1
+Content-Type: application/json
+
+{
+    "data" : [
+        {
+            "lectureId": "1111222233",
+            "semesterId": "1111222233",
+            "facultyId": "1111222233",
+            "dayOfWeek": 3,
+            "startTime": "1200",
+            "endTime": "1400"
+        },
+        {
+            "lectureId": "0000999988",
+            "semesterId": "0000999988",
+            "facultyId": "0000999978",
+            "dayOfWeek": 3,
+            "startTime": "1500",
+            "endTime": "1700"
+        },
+        {
+            "lectureId": "8888888844",
+            "semesterId": "8888888844",
+            "facultyId": "8888888844",
+            "dayOfWeek": 2,
+            "startTime": "1200",
+            "endTime": "1400"
+        }
+    ]
+}

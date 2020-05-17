@@ -4,8 +4,9 @@ This report is for you to document the progres of your project. You should also 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
+-   Worked on project planning
+-   Worked on wireframe
+-   Code Style
 -   Changed....
 
 ## What do I plan to do next week
