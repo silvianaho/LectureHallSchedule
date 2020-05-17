@@ -69,19 +69,19 @@ var executeQueryArray = /*#__PURE__*/function () {
 exports.executeQueryArray = executeQueryArray;
 
 var dropTables = function dropTables() {
-  return executeQueryArray([_queries.dropLecturesTable, _queries.dropMessagesTable]);
+  return executeQueryArray([_queries.dropLecturesTable]);
 };
 
 exports.dropTables = dropTables;
 
 var createTables = function createTables() {
-  return executeQueryArray([_queries.createLecturesTable, _queries.createMessageTable]);
+  return executeQueryArray([_queries.createLecturesTable]);
 };
 
 exports.createTables = createTables;
 
 var insertIntoTables = function insertIntoTables() {
-  return executeQueryArray([_queries.insertLectures, _queries.insertMessages]);
+  return executeQueryArray([_queries.insertLectures]);
 };
 
 exports.insertIntoTables = insertIntoTables;

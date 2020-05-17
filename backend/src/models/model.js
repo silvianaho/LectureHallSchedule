@@ -11,8 +11,9 @@ class Model {
   }
 
   async select(columns, clause) {
-    let query = `SELECT ${columns} FROM ${this.table}`;
+    let query = `SELECT ${columns} FROM ${this.table} `;
     if (clause) query += clause;
+    // console.log(query);
     return this.pool.query(query);
   }
 
@@ -22,6 +23,8 @@ class Model {
     VALUES ${values}
     RETURNING ${columns}
     `;
+    // console.log(query);
+    // console.log(values);
     return this.pool.query(query);
   }
 }

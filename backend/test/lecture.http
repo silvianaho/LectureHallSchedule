@@ -1,3 +1,8 @@
+GET http://localhost:3000/basic/data?lectureId='1111111111' HTTP/1.1
+Content-Type: application/json
+
+###
+
 POST http://localhost:3000/basic/insert HTTP/1.1
 Content-Type: application/json
 
@@ -26,6 +31,24 @@ Content-Type: application/json
             "dayOfWeek": 2,
             "startTime": "1200",
             "endTime": "1400"
+        }
+    ]
+}
+
+###
+
+POST http://localhost:3000/basic/insert HTTP/1.1
+Content-Type: application/json
+
+{
+    "data" : [
+        {
+            "lectureId": "1234567890",
+            "semesterId": "1234567890",
+            "facultyId": "1234567890",
+            "dayOfWeek": 3,
+            "startTime": "1400",
+            "endTime": "1600"
         }
     ]
 }

@@ -2,9 +2,9 @@ import Model from '../models/model';
 
 const basicModel = new Model('lectures');
 
-export const allLectures = async (req, res) => {
+export const getLectures = async (req, res) => {
   try {
-    const data = await basicModel.select('*');
+    const data = await basicModel.select('*', `${req.query.queryString}`);
     res.status(200).json({ lectures: data.rows });
   } catch (err) {
     res.status(200).json({ lectures: err.stack });

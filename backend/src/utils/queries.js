@@ -1,9 +1,9 @@
 export const createLecturesTable = `
 DROP TABLE IF EXISTS lectures;
 CREATE TABLE IF NOT EXISTS lectures(
-    lectureId VARCHAR(10) PRIMARY KEY,
-    facultyId VARCHAR(10) NOT NULL,
-    semesterId VARCHAR(10) NOT NULL,
+    lectureId BIGINT PRIMARY KEY,
+    facultyId BIGINT NOT NULL,
+    semesterId BIGINT NOT NULL,
     dayOfWeek SMALLINT NOT NULL,
     startTime VARCHAR(4) NOT NULL,
     endTime VARCHAR(4) NOT NULL
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS technicians(
     technicianId BIGINT PRIMARY KEY,
     facultyId BIGINT NOT NULL,
     semesterId BIGINT NOT NULL,
-    dayOfWeek TINYINT(1) DEFAULT '',
+    dayOfWeek SMALLINTNOT NULL,
     startTime VARCHAR(4) NOT NULL,
     endTime VARCHAR(4) NOT NULL
     )

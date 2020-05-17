@@ -14,19 +14,10 @@ var _controllers = require("../controllers");
 var _middleware = require("../middleware");
 
 var indexRouter = _express["default"].Router();
-/* GET home page data */
-
-
-indexRouter.get('/', _controllers.indexPage);
-/* GET test page. */
-
-indexRouter.get('/messages', _controllers.messagesPage);
-/* POST test message. */
-
-indexRouter.post('/messages', _middleware.modifyMessage, _middleware.performAsyncAction, _controllers.addMessage);
 /* GET basic data viewer data */
 
-indexRouter.get('/basic', _controllers.allLectures);
+
+indexRouter.get('/basic/data', _controllers.lectures);
 /* POST basic lecture page. */
 
 indexRouter.post('/basic/insert', _middleware.insertMultipleValues, _controllers.addLecture);

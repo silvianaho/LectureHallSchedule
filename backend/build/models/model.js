@@ -55,20 +55,18 @@ var Model = /*#__PURE__*/function () {
       return select;
     }()
   }, {
-    key: "insertMessages",
+    key: "insertLecture",
     value: function () {
-      var _insertMessages = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(columns, values) {
+      var _insertLecture = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(columns, values) {
         var query;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                query = "\n    INSERT INTO ".concat(this.table, " (").concat(columns, ")\n    VALUES (").concat(values, ")\n    RETURNING ").concat(columns, "\n    "); // eslint-disable-next-line no-console
-
-                console.log(query);
+                query = "\n    INSERT INTO ".concat(this.table, " (").concat(columns, ")\n    VALUES ").concat(values, "\n    RETURNING ").concat(columns, "\n    ");
                 return _context2.abrupt("return", this.pool.query(query));
 
-              case 3:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -76,35 +74,7 @@ var Model = /*#__PURE__*/function () {
         }, _callee2, this);
       }));
 
-      function insertMessages(_x3, _x4) {
-        return _insertMessages.apply(this, arguments);
-      }
-
-      return insertMessages;
-    }()
-  }, {
-    key: "insertLecture",
-    value: function () {
-      var _insertLecture = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(columns, values) {
-        var query;
-        return _regenerator["default"].wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                query = "\n    INSERT INTO ".concat(this.table, " (").concat(columns, ")\n    VALUES ").concat(values, "\n    RETURNING ").concat(columns, "\n    "); // eslint-disable-next-line no-console
-
-                console.log(query);
-                return _context3.abrupt("return", this.pool.query(query));
-
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function insertLecture(_x5, _x6) {
+      function insertLecture(_x3, _x4) {
         return _insertLecture.apply(this, arguments);
       }
 

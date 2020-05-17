@@ -4,7 +4,7 @@ export const insertMultipleValues = (req, res, next) => {
     .map(
       (lecture) =>
         // eslint-disable-next-line implicit-arrow-linebreak
-        `(${lecture.lectureId}, ${lecture.semesterId}, ${lecture.facultyId}, ${lecture.dayOfWeek}, ${lecture.startTime}, ${lecture.endTime})`
+        `(${parseInt(lecture.lectureId, 10)}, ${parseInt(lecture.semesterId, 10)}, ${parseInt(lecture.facultyId, 10)}, ${parseInt(lecture.dayOfWeek, 10)}, ${lecture.startTime}, ${lecture.endTime})`
     )
     .join(',');
   // eslint-disable-next-line operator-linebreak

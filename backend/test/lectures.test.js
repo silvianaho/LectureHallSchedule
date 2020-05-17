@@ -3,7 +3,7 @@ import { expect, server } from './setup';
 describe('Lectures', () => {
   it('get lectures data viewer page', (done) => {
     server
-      .get('/basic')
+      .get('/basic/data')
       .expect(200)
       .end((err, res) => {
         expect(res.status).to.equal(200);
@@ -49,14 +49,11 @@ describe('Lectures', () => {
         expect(res.body.messages).to.be.instanceOf(Array);
 
         const members = [];
-        res.body.messages.forEach(lecture => {
+        res.body.messages.forEach((lecture) => {
           members.push(lecture.lectureid);
         });
 
-        expect(members).to.have.members([
-          '1111222233',
-          '8888888844',
-        ]);
+        expect(members).to.have.members(['1111222233', '8888888844']);
         done();
       });
   });

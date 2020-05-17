@@ -1,15 +1,15 @@
 import express from 'express';
 import {
-  allLectures,
+  getLectures,
   addLecture,
   // resultPage
 } from '../controllers';
-import { insertMultipleValues } from '../middleware';
+import { insertMultipleValues, transformQueries } from '../middleware';
 
 const indexRouter = express.Router();
 
 /* GET basic data viewer data */
-indexRouter.get('/basic', allLectures);
+indexRouter.get('/basic/data', transformQueries, getLectures);
 
 /* POST basic lecture page. */
 indexRouter.post('/basic/insert', insertMultipleValues, addLecture);
