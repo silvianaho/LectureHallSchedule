@@ -1,24 +1,12 @@
 import express from 'express';
 import {
-  indexPage,
-  messagesPage,
-  addMessage,
   allLectures,
   addLecture,
   // resultPage
 } from '../controllers';
-import { modifyMessage, performAsyncAction, insertMultipleValues } from '../middleware';
+import { insertMultipleValues } from '../middleware';
 
 const indexRouter = express.Router();
-
-/* GET home page data */
-indexRouter.get('/', indexPage);
-
-/* GET test page. */
-indexRouter.get('/messages', messagesPage);
-
-/* POST test message. */
-indexRouter.post('/messages', modifyMessage, performAsyncAction, addMessage);
 
 /* GET basic data viewer data */
 indexRouter.get('/basic', allLectures);

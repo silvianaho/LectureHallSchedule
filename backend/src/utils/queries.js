@@ -1,12 +1,3 @@
-export const createMessageTable = `
-DROP TABLE IF EXISTS messages;
-CREATE TABLE IF NOT EXISTS messages(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR DEFAULT '',
-    message VARCHAR NOT NULL
-)
-`;
-
 export const createLecturesTable = `
 DROP TABLE IF EXISTS lectures;
 CREATE TABLE IF NOT EXISTS lectures(
@@ -33,17 +24,10 @@ CREATE TABLE IF NOT EXISTS technicians(
 
 // lectureHall TINYINT(1)
 
-export const insertMessages = `
-INSERT INTO messages(name, message)
-VALUES ('namae', 'first message'),
-    ('person', 'second message')
-`;
-
 export const insertLectures = `
 INSERT INTO lectures(lectureId, semesterId, facultyId, dayOfWeek, startTime, endTime)
 VALUES (1111111111, 2222222222, 1111111111, 1, '1000', '1100')
 `;
 
-export const dropMessagesTable = 'DROP TABLE messages';
 export const dropLecturesTable = 'DROP TABLE lectures';
 export const dropTechniciansTable = 'DROP TABLE technicians';

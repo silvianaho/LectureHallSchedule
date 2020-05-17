@@ -23,9 +23,9 @@ describe('Lectures', () => {
     const data = {
       data: [
         {
-          lectureId: '1111222233',
-          semesterId: '1111222233',
-          facultyId: '1111222233',
+          lectureId: 1111222233,
+          semesterId: 1111222233,
+          facultyId: 1111222233,
           dayOfWeek: 3,
           startTime: '1200',
           endTime: '1400',

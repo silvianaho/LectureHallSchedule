@@ -2,9 +2,6 @@
 /* eslint-disable no-console */
 import { pool } from '../models/pool';
 import {
-  insertMessages,
-  dropMessagesTable,
-  createMessageTable,
   insertLectures,
   dropLecturesTable,
   createLecturesTable,
@@ -20,9 +17,6 @@ export const executeQueryArray = async (arr) =>
     });
   });
 
-export const dropTables = () =>
-  executeQueryArray([dropLecturesTable, dropMessagesTable]);
-export const createTables = () =>
-  executeQueryArray([createLecturesTable, createMessageTable]);
-export const insertIntoTables = () =>
-  executeQueryArray([insertLectures, insertMessages]);
+export const dropTables = () => executeQueryArray([dropLecturesTable]);
+export const createTables = () => executeQueryArray([createLecturesTable]);
+export const insertIntoTables = () => executeQueryArray([insertLectures]);

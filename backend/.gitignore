@@ -65,3 +65,6 @@ problemsFaced.md
 
 # shell script
 *.sh
+
+# learn
+learn.*

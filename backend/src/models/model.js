@@ -16,25 +16,12 @@ class Model {
     return this.pool.query(query);
   }
 
-  async insertMessages(columns, values) {
-    const query = `
-    INSERT INTO ${this.table} (${columns})
-    VALUES (${values})
-    RETURNING ${columns}
-    `;
-    // eslint-disable-next-line no-console
-    console.log(query);
-    return this.pool.query(query);
-  }
-
   async insertLecture(columns, values) {
     const query = `
     INSERT INTO ${this.table} (${columns})
     VALUES ${values}
     RETURNING ${columns}
     `;
-    // eslint-disable-next-line no-console
-    console.log(query);
     return this.pool.query(query);
   }
 }
