@@ -1,4 +1,4 @@
-export const insertMultipleValues = (req, res, next) => {
+export const mapMultipleValues = (req, res, next) => {
   const { data } = req.body;
   const values = data
     .map(

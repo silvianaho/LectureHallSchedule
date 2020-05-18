@@ -2,9 +2,9 @@ import express from 'express';
 import {
   getLectures,
   addLecture,
-  // resultPage
+  getResult
 } from '../controllers';
-import { insertMultipleValues, transformQueries } from '../middleware';
+import { mapMultipleValues, transformQueries } from '../middleware';
 
 const indexRouter = express.Router();
 
@@ -12,9 +12,9 @@ const indexRouter = express.Router();
 indexRouter.get('/basic/data', transformQueries, getLectures);
 
 /* POST basic lecture page. */
-indexRouter.post('/basic/insert', insertMultipleValues, addLecture);
+indexRouter.post('/basic/insert', mapMultipleValues, addLecture);
 
 /* GET basic result */
-// indexRouter.get('/basic/result', resultPage);
+indexRouter.get('/basic/result', getResult);
 
 export default indexRouter;

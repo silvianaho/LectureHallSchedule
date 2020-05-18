@@ -1,2 +1,2 @@
-export * from './insertMultipleValues';
+export * from './mapMultipleValues';
 export * from './transformQueries';
