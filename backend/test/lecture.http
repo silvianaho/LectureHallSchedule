@@ -1,7 +1,7 @@
 GET http://localhost:3000/basic/data?dayOfWeek=3 HTTP/1.1
 Content-Type: application/json
 
-###
+### multiple data
 
 POST http://localhost:3000/basic/insert HTTP/1.1
 Content-Type: application/json
@@ -17,7 +17,7 @@ Content-Type: application/json
             "endTime": "1400"
         },
         {
-            "lectureId": 1000999988,
+            "lectureId": 3000999988,
             "semesterId": 1000999988,
             "facultyId": 1000999978,
             "dayOfWeek": 3,
@@ -35,7 +35,7 @@ Content-Type: application/json
     ]
 }
 
-###
+### single data/duplicate entries
 
 POST http://localhost:3000/basic/insert HTTP/1.1
 Content-Type: application/json
@@ -43,12 +43,29 @@ Content-Type: application/json
 {
     "data" : [
         {
-            "lectureId": 1234567891,
+            "lectureId": 9874567891,
             "semesterId": 1234567890,
             "facultyId": 1234567890,
             "dayOfWeek": 3,
-            "startTime": "1400",
-            "endTime": "1600"
+            "startTime": "1600",
+            "endTime": "1730"
+        }
+    ]
+}
+
+### invalid input
+POST http://localhost:3000/basic/insert HTTP/1.1
+Content-Type: application/json
+
+{
+    "data" : [
+        {
+            "lectureId": 2000999988,
+            "semesterId": 2000999988,
+            "facultyId": 2000999978,
+            "dayOfWeek": 3,
+            "startTime": "15:00",
+            "endTime": "1700"
         }
     ]
 }

@@ -1,6 +1,7 @@
 import logger from 'morgan';
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import createError from 'http-errors';
 import indexRouter from './routes/index';
 
 const app = express();
@@ -11,9 +12,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/', indexRouter);
 
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  res.status(400).json({ error: err.stack });
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+// error handler
+app.use((error, req, res, next) => {
+  // eslint-disable-next-line no-console
+  console.log('meow, this is an error');
+  res.status(error.status || 500).json({
+    error: error.message,
+    code: error.status,
+  });
 });
 
 export default app;

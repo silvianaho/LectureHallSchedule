@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS lectures(
     facultyId BIGINT NOT NULL,
     semesterId BIGINT NOT NULL,
     dayOfWeek SMALLINT NOT NULL,
-    startTime VARCHAR(4) NOT NULL,
-    endTime VARCHAR(4) NOT NULL
+    startTime TIME WITHOUT TIME ZONE NOT NULL,
+    endTime TIME WITHOUT TIME ZONE NOT NULL
 )
 `;
 
@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS technicians(
     facultyId BIGINT NOT NULL,
     semesterId BIGINT NOT NULL,
     dayOfWeek SMALLINTNOT NULL,
-    startTime VARCHAR(4) NOT NULL,
-    endTime VARCHAR(4) NOT NULL
+    startTime TIME[MINUTE][WITHOUT TIME ZONE] NOT NULL,
+    endTime TIME[MINUTE][WITHOUT TIME ZONE] NOT NULL
     )
     `;
 

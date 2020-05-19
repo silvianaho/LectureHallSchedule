@@ -4,7 +4,7 @@ import {
   addLecture,
   getResult
 } from '../controllers';
-import { mapMultipleValues, transformQueries } from '../middleware';
+import { mapMultipleValues, transformQueries, transformQueriesCompute } from '../middleware';
 
 const indexRouter = express.Router();
 
@@ -15,6 +15,6 @@ indexRouter.get('/basic/data', transformQueries, getLectures);
 indexRouter.post('/basic/insert', mapMultipleValues, addLecture);
 
 /* GET basic result */
-indexRouter.get('/basic/result', getResult);
+indexRouter.get('/basic/result', transformQueriesCompute, getResult);
 
 export default indexRouter;

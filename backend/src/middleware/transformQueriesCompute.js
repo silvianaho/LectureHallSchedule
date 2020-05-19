@@ -1,38 +1,30 @@
 /* eslint-disable curly */
 /* eslint-disable nonblock-statement-body-position */
 /* eslint-disable operator-linebreak */
-export const transformQueries = (req, res, next) => {
+export const transformQueriesCompute = (req, res, next) => {
   if (req.query) {
-    const {
-      lectureId,
-      facultyId,
-      semesterId,
-      dayOfWeek
-    } = req.query;
+    const { facultyId, semesterId, dayOfWeek } = req.query;
 
     // console.log(lectureId, facultyId, semesterId, dayOfWeek, page, pageSize);
     // eslint-disable-next-line no-console
-    let whereClause = '';
-    if (!facultyId && !semesterId && !dayOfWeek) whereClause = '';
+    let clause = '';
+    if (!facultyId && !semesterId && !dayOfWeek) clause = '';
     else {
-      whereClause = 'WHERE ';
-      if (facultyId)
-        whereClause += lectureId
-          ? ` AND facultyId = ${facultyId}`
-          : `facultyId = ${facultyId}`;
+      clause = 'WHERE ';
+      if (facultyId) clause += `facultyId = ${facultyId}`;
       if (semesterId)
-        whereClause +=
-          lectureId || facultyId
-            ? ` AND semesterId = ${semesterId}`
-            : `semesterId = ${semesterId}`;
+        clause += facultyId
+          ? ` AND semesterId = ${semesterId}`
+          : `semesterId = ${semesterId}`;
       if (dayOfWeek)
-        whereClause +=
-          lectureId || facultyId || semesterId
+        clause +=
+          facultyId || semesterId
             ? ` AND dayOfWeek = ${dayOfWeek}`
             : `dayOfWeek = ${dayOfWeek}`;
+      clause += ' ORDER BY starttime ASC';
     }
 
-    req.query.queryString = whereClause;
+    req.query.queryString = clause;
   }
   next();
 };
