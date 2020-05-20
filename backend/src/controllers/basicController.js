@@ -9,7 +9,7 @@ export const getLectures = async (req, res) => {
   try {
     const data = await basicModel.select('*', `${req.query.queryString}`);
     if (data.rows.length === 0)
-      res.status(404).json({ error: 'Not Found', code: 404 }, null);
+      res.status(404).json({ error: 'Not Found', code: 404 });
     return res.status(200).json({ lectures: data.rows });
     // res.status(200).json({ lectures: data.rows });
   } catch (err) {
@@ -51,7 +51,8 @@ export const getResult = async (req, res) => {
   try {
     const data = await basicModel.select('*', `${req.query.queryString}`);
     const result = intervalScheduling(data.rows);
-    res.status(200).json({ result });
+    if (result.length === 0) res.status(404).json({ error: 'Sorry, we could not find what you asked for', code: 404 });
+    else res.status(200).json({ result });
   } catch (err) {
     res.status(200).json({ lectures: err.stack });
   }

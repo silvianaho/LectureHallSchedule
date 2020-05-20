@@ -1,10 +1,10 @@
 import express from 'express';
+import { getLectures, addLecture, getResult } from '../controllers';
 import {
-  getLectures,
-  addLecture,
-  getResult
-} from '../controllers';
-import { mapMultipleValues, transformQueries, transformQueriesCompute } from '../middleware';
+  mapMultipleValues,
+  transformQueries,
+  transformQueriesCompute,
+} from '../middleware';
 
 const indexRouter = express.Router();
 
