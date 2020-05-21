@@ -1,0 +1,76 @@
+<script>
+    $(() => {
+        // Get lecturer listings as soon as page loads
+        var settings = {
+            "url": "http://localhost/??",//waiting for backend
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        };
+
+        $.ajax(settings).fail((response) => {
+            console.log("Getting Lecturer listings failed ;w;");
+        }).done((response) => {
+            
+            //const parent = $("#");
+           // parent.empty();
+            response.forEach((element, index) => {
+                
+                const html =
+                    
+                +'<tr>'
+                +'<th scope="row">'+element.Lecture+'</th>'//waiting for backend
+                +'<td>'+element.lectureroom+'</td>'
+                +'<td>'+element.Semester+'</td>'
+                +'<td>'+element.weekofday+'</td>'
+                +'<td>'+element.starttime+'</td>'
+                +'<td>'+element.endtime+'</td>'
+                +'</tr>'
+                +'</tbody>'
+                parent.append(html);
+            });
+        });
+    
+
+        // Search for items on button click
+        $("#search-button").on("click", (event) => {
+            settings = {
+                "url": "http://localhost/???/search",//backend search
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "data": {
+                    "title": $("#search-input").val()
+                }
+            };
+            $.ajax(settings).fail((response) => {
+                console.log("Searching lecturer listings failed ;w;!");
+            }).done((response) => {
+                $("#searchResult").empty()//search not done
+                const parent = $("#card-container");
+                parent.empty();
+                response.forEach((element, index) => {
+                    const html =
+                    
+                +'<tr>'
+                +'<th scope="row">'+element.Lecture+'</th>'//waiting for backend
+                +'<td>'+element.lectureroom+'</td>'
+                +'<td>'+element.Semester+'</td>'
+                +'<td>'+element.weekofday+'</td>'
+                +'<td>'+element.starttime+'</td>'
+                +'<td>'+element.endtime+'</td>'
+                +'</tr>'
+                +'</tbody>'
+                parent.append(html);
+                });
+            });
+        })
+
+    });
+
+
+</script>
