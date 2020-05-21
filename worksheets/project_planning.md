@@ -27,12 +27,13 @@ This document helps you identify the smaller tasks and helps you create a rough 
 
 ## Estimate Schedule
 
-### Member 1 - <ENTER NAME>
+### Member 1 - SILVIANA
 
-| Week | Level | Component | Feature       | Task           |
-| ---- | ----- | --------- | ------------- | -------------- |
-| 1    | Basic | Frontend  | Data Viewer   | Wireframe      |
-| 1    | Basic | Frontend  | Result Viewer | Wireframe      |
-| 2-3  | Basic | Frontend  | Data Viewer   | Implementation |
-
-> This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
+| Week | Level    | Component                 | Feature                                | Task           |
+| ---- | -------- | ------------------------- | -------------------------------------- | -------------- |
+|  1   | Basic    | Backend & Documentation   | Database + Project Planning            | <li>Make DB Schema, Create Table and Insert;</li><li> `project_planning.md`, `project_worksheet.md`, `problem_worksheet.md`, `schema.md`</li> |
+|  2   | Basic    | Backend & Documentation   | Server + Code Style                    | <li>Use express-generator, setup babel, eslint, prettier, and dotenv;</li><li> `code_style.md`</li> |
+|  3   | Basic    | Backend & Documentation   | Data Query & Test + Data Viewer Wireframe | <li>Setup code testing frameworks, REST Client, `get /basic/data`;</li> <li>`basic_frontend_data_viewer.md`, `api.md`</li> |
+|  4   | Basic    | Backend & Documentation   | Insert API                             | <li>`post /basic/insert`;</li><li> `api.md`</li> |
+|  5   | Basic    | Backend & Documentation   | Result API & integrate with frontend + Result Wireframe | <li>`get /basic/result`, integrate with frontend;</li><li> `api.md`, `basic_frontend_result_viewer.md`</li> |
+|  6   | Basic    | Backend & Documentation   | Final Testing + Finish documentation   | <li>Test all APIs, nitpicking;</li><li>Nitpicking, grammar and diction checks</li> |

@@ -44,8 +44,8 @@ Name of problem: **Interval Scheduling**
 
 | lectureId  | Hall # |
 | ---------- | ------ |
-| 1000000001 | ?      |
-| 1000000002 | ?      |
+| 1000000001 | 1      |
+| 1000000002 | 2      |
 
 ## Query 2
 
@@ -59,9 +59,14 @@ Name of problem: **Interval Scheduling**
 
 | lectureId  | Hall # |
 | ---------- | ------ |
-| 100000000? | ?      |
+| 1000000003 | 1      |
+| 1000000004 | 2      |
+| 1000000005 | 1      |
 
-> Which lectures are invovled and which halls are they allocated to?
+> Which lectures are involved and which halls are they allocated to?<br>
+> The lectures involved are 1000000003, 1000000004, 1000000005<br>
+> Lecture 1000000003 and 1000000005 are allocated to Hall 1<br>
+> Lecture 1000000004 is allocated to Hall 2
 
 ## Query 3
 
@@ -75,9 +80,17 @@ Name of problem: **Interval Scheduling**
 
 | lectureId  | Hall # |
 | ---------- | ------ |
-| 100000000? | ?      |
+| 1000000006 | 2      |
+| 1000000007 | 2      |
+| 1000000008 | 1      |
+| 1000000009 | 3      |
 
 > Which lectures are invovled and which halls are they allocated to?
+> The lectures involved are 1000000006, 1000000007, 1000000008, and 1000000009<br>
+> Lecture 1000000008 is  allocated to Hall 1<br>
+> Lecture 1000000006, and 1000000007 are allocated to Hall 2<br>
+> Lecture 1000000009 is allocated to Hall 3<br>
+
 
 ## Query 4
 
@@ -91,9 +104,18 @@ Name of problem: **Interval Scheduling**
 
 | lectureId  | Hall # |
 | ---------- | ------ |
-| 100000000? | ?      |
+| 1000000010 | 2      |
+| 1000000011 | 2      |
+| 1000000012 | 1      |
+| 1000000013 | 3      |
+| 1000000014 | 4      |
 
 > Which lectures are invovled and which halls are they allocated to?
+> The lectures involved are 1000000006, 1000000007, 1000000008, and 1000000009<br>
+> Lecture 1000000012 is  allocated to Hall 1<br>
+> Lecture 1000000010, and 1000000011 are allocated to Hall 2<br>
+> Lecture 1000000013 is allocated to Hall 3<br>
+> Lecture 1000000014 is allocated to Hall 4<br>
 
 # Advance
 
@@ -155,7 +177,7 @@ Modified to increase difficulty of problem
 | --------- | ------- | ----------- |
 | 1000      | 1030    | Surplus 1   |
 | 1030      | 1100    | 0           |
-| 1100      | ?       | ???         |
+| 1100      | 1130    | 0           |
 
 ## Query 2
 
@@ -169,7 +191,12 @@ Modified to increase difficulty of problem
 
 | From Time | To Time | Suplus/Lack |
 | --------- | ------- | ----------- |
-| ?         | ?       | ???         |
+| 1000      | 1030    | 0           |
+| 1030      | 1100    | 0           |
+| 1100      | 1130    | Surplus 1   |
+| 1130      | 1200    | Surplus 1   |
+| 1200      | 1230    | 0           |
+| 1230      | 1300    | 0           |
 
 ## Query 3
 
@@ -183,7 +210,16 @@ Modified to increase difficulty of problem
 
 | From Time | To Time | Suplus/Lack |
 | --------- | ------- | ----------- |
-| ?         | ?       | ???         |
+| 0900      | 0930    | 0           |
+| 0930      | 1000    | 0           |
+| 1000      | 1030    | 0           |
+| 1030      | 1100    | Lack 2      |
+| 1100      | 1130    | 0           |
+| 1130      | 1200    | 0           |
+| 1200      | 1230    | Lack 2      |
+| 1230      | 1300    | Lack 1      |
+| 1300      | 1330    | 0           |
+| 1330      | 1400    | 0           |
 
 ## Query 4
 
@@ -197,4 +233,18 @@ Modified to increase difficulty of problem
 
 | From Time | To Time | Suplus/Lack |
 | --------- | ------- | ----------- |
-| ?         | ?       | ???         |
+| 0800      | 0830    | Surplus 1   |
+| 0830      | 0900    | Surplus 1   |
+| 0900      | 0930    | 0           |
+| 0930      | 1000    | 0           |
+| 1000      | 1030    | Surplus 1   |
+| 1030      | 1100    | 0           |
+| 1100      | 1130    | Surplus 1   |
+| 1130      | 1200    | Surplus 1   |
+| 1200      | 1215    | 0           |
+| 1215      | 1230    | Surplus 1   |
+| 1230      | 1300    | Surplus 2   |
+| 1300      | 1330    | Surplus 1   |
+| 1330      | 1400    | Surplus 1   |
+| 1400      | 1425    | Surplus 1   |
+| 1425      | 1500    | Surplus 1   |
