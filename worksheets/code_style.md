@@ -8,10 +8,10 @@ This documents helps to guide the look and feel of the code so that even when th
 | ----------------- | ------------------------------- |
 | Case Styles       | camelCase/snake_case/PascalCase |
 | Acronym Case      | IBM/Ibm/ibm                     |
-| Indentation Style | Allman/1TBS                     |
-| Indentation       | Tabs/Space                      |
-| Indentation Space | 2/4 spaces                      |
-| Semicolon         | Optional/Mandatory              |
+| Indentation Style | 1TBS                            |
+| Indentation       | Space                           |
+| Indentation Space | 2                               |
+| Semicolon         | Mandatory                       |
 
 ## Examples
 
