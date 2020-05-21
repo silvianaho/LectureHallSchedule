@@ -1,0 +1,30 @@
+.card{
+    margin-top:5%;
+}
+.card-header{
+    font-SIZE:35;
+    margin-bottom:10%;
+}
+.columnshown{
+    font-SIZE:13;
+}
+.showing{
+    font-SIZE:13;
+}
+.nav{
+    margin-top:5%;
+}
+.logo{
+    margin-top:2%;
+    margin-left:10%;
+    font-SIZE:35;
+    margin-bottom:16%;
+}
+p{
+    font-SIZE:20;
+    margin-top:3%;
+    margin-left:5%;
+}
+.nav-link{
+    margin-top:2%;
+}
