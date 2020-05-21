@@ -6,8 +6,8 @@ This documents helps to guide the look and feel of the code so that even when th
 
 | Rules             | Choices                         |
 | ----------------- | ------------------------------- |
-| Case Styles       | camelCase/snake_case/PascalCase |
-| Acronym Case      | IBM/Ibm/ibm                     |
+| Case Styles       | camelCase                       |
+| Acronym Case      | Ibm                             |
 | Indentation Style | 1TBS                            |
 | Indentation       | Space                           |
 | Indentation Space | 2                               |
@@ -15,7 +15,20 @@ This documents helps to guide the look and feel of the code so that even when th
 
 ## Examples
 
-Based on your chosen rules, give an example of a code that follows the code style and an example of a code that does not follow the code style. The examples you give should cover all the above defined rule.
+Case Styles<br>
+👎
+```
+var HelloWorld = "a" // this is pascal case
+var HELLOWORLD = "b" 
+var hello_world = "c" // this is snake case
+```
+
+👍
+```
+var helloWorld = "correct"
+
+```
+
 
 ### Good Example
 
