@@ -24,7 +24,7 @@
 2. May be hard to implement.
 
 ### Justification 2
-![Justificaiton1](assets/google calendar.png)
+![Justificaiton1](worksheets/wireframes/assets/google calendar.png)
 #### Good Points
 1.It is very easy for the user to look at the timing</br>
 2.The design is simple but appealing to eyes</br>
