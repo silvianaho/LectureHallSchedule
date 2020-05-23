@@ -1,4 +1,9 @@
-GET http://localhost:3000/basic/data?dayOfWeek=3 HTTP/1.1
+GET http://localhost:3000/basic/data HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/basic/data?facultyId=1234567890&dayOfWeek=3 HTTP/1.1
 Content-Type: application/json
 
 ### multiple data
@@ -43,7 +48,7 @@ Content-Type: application/json
 {
     "data" : [
         {
-            "lectureId": 9874567891,
+            "lectureId": 9874567822,
             "semesterId": 1234567890,
             "facultyId": 1234567890,
             "dayOfWeek": 3,
@@ -60,7 +65,7 @@ Content-Type: application/json
 {
     "data" : [
         {
-            "lectureId": 2000999988,
+            "lectureId": 2000999928,
             "semesterId": 2000999988,
             "facultyId": 2000999978,
             "dayOfWeek": 3,
@@ -69,3 +74,7 @@ Content-Type: application/json
         }
     ]
 }
+
+###
+GET http://localhost:3000/basic/info HTTP/1.1
+Content-Type: application/json

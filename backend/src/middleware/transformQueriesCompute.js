@@ -1,12 +1,12 @@
 /* eslint-disable curly */
 /* eslint-disable nonblock-statement-body-position */
 /* eslint-disable operator-linebreak */
+import { getResult } from '../controllers';
+
 export const transformQueriesCompute = (req, res, next) => {
   if (req.query) {
     const { facultyId, semesterId, dayOfWeek } = req.query;
 
-    // console.log(lectureId, facultyId, semesterId, dayOfWeek, page, pageSize);
-    // eslint-disable-next-line no-console
     let clause = '';
     if (!facultyId && !semesterId && !dayOfWeek) clause = '';
     else {
@@ -25,6 +25,12 @@ export const transformQueriesCompute = (req, res, next) => {
     }
 
     req.query.queryString = clause;
+    console.log(clause);
+    getResult(req.query.queryString).then((result) => {
+      console.log(result.result);
+      
+      if (result.error) return next(result.error);
+      return res.status(200).json(result.result);
+    });
   }
-  next();
 };

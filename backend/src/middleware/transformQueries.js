@@ -2,7 +2,7 @@
 /* eslint-disable curly */
 /* eslint-disable nonblock-statement-body-position */
 /* eslint-disable operator-linebreak */
-// import { getLectures } from '../controllers';
+import { getLectures } from '../controllers';
 
 export const transformQueries = (req, res, next) => {
   if (req.query) {
@@ -37,15 +37,12 @@ export const transformQueries = (req, res, next) => {
       if (!pageSize) pageSize = 10;
     }
     limitOffsetClause = `LIMIT ${pageSize} OFFSET ${page * pageSize}`;
-    const queryString = `${whereClause} ${limitOffsetClause}`;
+    const queryString = `${whereClause}${limitOffsetClause}`;
     req.query.queryString = queryString;
 
-    // const result = getLectures(req.query.queryString);
-    // if (!result.lectures) res.json(result);
-    // eslint-disable-next-line no-console
-    // console.log('result: ', JSON.stringify(result));
-    // eslint-disable-next-line no-console
-    // console.log('query: ', JSON.stringify(queryString));
+    getLectures(req.query.queryString).then((result) => {
+      if (result.error) return next(result.error);
+      return res.status(200).json(result.result);
+    });
   }
-  next();
 };

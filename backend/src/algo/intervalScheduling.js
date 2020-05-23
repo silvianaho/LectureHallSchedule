@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export const intervalScheduling = (lectures) => {
   const halls = [];
   // keep track of the earliest end time
@@ -10,29 +8,23 @@ export const intervalScheduling = (lectures) => {
     const lecture = {
       lectureId: lectures[i].lectureid,
       startTime: lectures[i].starttime,
-      endTime: lectures[i].endtime
+      endTime: lectures[i].endtime,
     };
-    const start = moment(lecture.startTime, 'HH:mm:ss');
-
-    if (
-      earliestEndTime[0] !== undefined &&
-      start >= moment(earliestEndTime[0].time, 'HH:mm:ss')
-    ) {
+    const start = parseInt(lecture.startTime, 10);
+    if (earliestEndTime[0] !== undefined && start >= earliestEndTime[0].time) {
       halls[earliestEndTime[0].hallNo].push(lecture);
-      earliestEndTime.push({
-        time: moment(lecture.endTime, 'HH:mm:ss'),
+      earliestEndTime[0] = {
+        time: parseInt(lecture.endTime, 10),
         hallNo: earliestEndTime[0].hallNo,
-      });
-      earliestEndTime.shift();
-      earliestEndTime.sort((a, b) => a.time.diff(b.time));
+      };
     } else {
       halls.push([lecture]);
       earliestEndTime.push({
-        time: moment(lecture.endTime, 'HH:mm:ss'),
+        time: parseInt(lecture.endTime, 10),
         hallNo: earliestEndTime.length,
       });
-      earliestEndTime.sort((a, b) => a.time.diff(b.time));
     }
+    earliestEndTime.sort((a, b) => a.time - b.time);
   }
 
   return halls;

@@ -1,4 +1,4 @@
-// import moment from 'moment';
+import { addLecture } from '../controllers';
 
 export const mapMultipleValues = (req, res, next) => {
   const { data } = req.body;
@@ -19,13 +19,9 @@ export const mapMultipleValues = (req, res, next) => {
   const columns =
     'lectureId, semesterId, facultyId, dayOfWeek, startTime, endTime';
   req.body = { data, columns, values };
-  next();
-  /*
-(req, res, next) => {
-    const input = // extract req input
-    const {error, result} = controller.doSomethingWithInput(input)
-    if (error) return next(error)
-    res.status(200).json(result);
-}
- */
+
+  addLecture(req.body).then((result) => {
+    if (result.error) return next(result.error);
+    return res.status(200).json(result.result);
+  });
 };

@@ -10,11 +10,19 @@ class Model {
     );
   }
 
+  async selectDistinct(columns) {
+    const query = `
+  SELECT
+    DISTINCT ${columns}
+  FROM
+    ${this.table}
+  GROUP BY ${columns};`;
+    return this.pool.query(query);
+  }
+
   async select(columns, clause) {
     let query = `SELECT ${columns} FROM ${this.table} `;
     if (clause) query += clause;
-    // eslint-disable-next-line no-console
-    console.log(query);
     return this.pool.query(query);
   }
 
@@ -24,8 +32,6 @@ class Model {
     VALUES ${values}
     RETURNING ${columns}
     `;
-    // console.log(query);
-    // console.log(values);
     return this.pool.query(query);
   }
 }
