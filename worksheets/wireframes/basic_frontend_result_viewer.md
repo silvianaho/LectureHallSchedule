@@ -9,9 +9,7 @@
 
 ### Justification 1
 
-
-
-![Justificaiton1](assets/Gizmo.png)
+![Justificaiton1](assets/Gizmo.PNG)
 
 #### Good Points
 
@@ -24,7 +22,7 @@
 1. it could be time consuming to do the validitation and the auto correct
 2. the form is too small, input is all clustered together
 ### Justification 2
-![Justificaiton2](assets/google calendar.png)
+![Justificaiton2](assets/google-calendar.png)
 #### Good Points
 1.It is very easy for the user to look at the timing</br>
 2.The design is simple but appealing to eyes</br>
