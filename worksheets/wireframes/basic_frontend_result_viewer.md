@@ -11,18 +11,18 @@
 
 
 
-![Justificaiton1](https://blog.nusmods.com/img/nusmods-r/timetable-desktop-dark.png)
+![Justificaiton1](assets/Gizmo.png)
 
 #### Good Points
 
-1. Nice looking UI.
-2. Show data with start/end time appropriately.
+1. very detailed user input page
+2. the day of week is set as tick box</br>
+3. good validity check for the time, when user key in value>12, it is auto corrected to 12
 
 #### Bad Points
 
-1. Controls may not be relevent, need to redesign the controls.
-2. May be hard to implement.
-
+1. it could be time consuming to do the validitation and the auto correct
+2. the form is too small, input is all clustered together
 ### Justification 2
 ![Justificaiton2](assets/google calendar.png)
 #### Good Points
@@ -33,7 +33,7 @@
 
 
 ### Justification 3
-![Justificaiton3](assets/xdguru administrator ui-today.png)
+![Justificaiton3](assets/xdguru-administrator-ui-today.png)
 #### Good Points
 1.There is a line to indicate half an hour</br>
 2.Very nice theme colour</br>
