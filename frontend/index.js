@@ -248,10 +248,9 @@ $(document).ready(() => {
         console.log("Getting Lecturer listings failed ;w;");
       })
       .done((response) => {
-        let lectures = response.lectures;
         const parent = $("#lecture-list-table");
         parent.empty();
-        lectures.forEach((element) => {
+        response.forEach((element) => {
           const lectures = `<tr>
             <th scope="row">${element.lectureid}</th>
             <td>${element.facultyid}</td>
