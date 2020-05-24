@@ -28,6 +28,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./index.js" type="text/javascript"></script>
+    <title>JiBaBoom</title>
   </head>
 
   <body>
@@ -161,7 +162,7 @@
             <p class="display-4">Please try again.</p>
           </div>
         </div>
-        <span
+        <span id="page-size-filter"
           >Show
           <input
             type="number"
@@ -172,7 +173,7 @@
           />Entries</span
         >
 
-        <small class="float-right ">Showing  <span id="start-id"></span> to  <span id="end-id"></span> out of <span id="total-count"></span> entries</small>
+        <small class="float-right " id="showing-entries">Showing  <span id="start-id"></span> to  <span id="end-id"></span> out of <span id="total-count"></span> entries</small>
         <!-- pagination -->
         <nav aria-label="Page navigation">
           <ul class="pagination mb-0 justify-content-center">

@@ -116,8 +116,10 @@ function showEntries() {
 
   let start = basicDataQuery["page"] * basicDataQuery["pageSize"] + 1;
   // @ts-ignore
-  let end = parseInt(basicDataQuery["page"] * basicDataQuery["pageSize"]) + parseInt(basicDataQuery["pageSize"]);
-  end > totalNoOfLectures ? end = totalNoOfLectures : end = end;
+  let end =
+    parseInt(basicDataQuery["page"] * basicDataQuery["pageSize"]) +
+    parseInt(basicDataQuery["pageSize"]);
+  end > totalNoOfLectures ? (end = totalNoOfLectures) : (end = end);
   startId.text(start);
   endId.text(end);
 }
@@ -196,6 +198,7 @@ $(document).ready(() => {
     basicDataQuery.facultyId = $("#faculty-id").val();
     basicDataQuery.semesterId = $("#semester-id").val();
     basicDataQuery.dayOfWeek = $("#day-of-week").val();
+    basicDataQuery["page"] = 0;
     settings = {
       url: "http://localhost:3000/basic/data", //backend search
       method: "GET",
@@ -209,26 +212,33 @@ $(document).ready(() => {
       .fail((response) => {
         $("#lecture-list-table").empty();
         $(".not-found").removeClass("d-none");
+        $("#page-size-filter").addClass("d-none");
+        $("#showing-entries").addClass("d-none");
         $("#page-size").attr("value", 0);
       })
       .done((response) => {
         $(".not-found").addClass("d-none");
+        $("#page-size-filter").removeClass("d-none");
+        $("#showing-entries").removeClass("d-none");
         const parent = $("#lecture-list-table");
         parent.empty();
         $(".pagination").empty();
-        $("#page-size").attr("value", response.length);
 
         response.forEach((element) => {
           const lectures = `<tr>
-              <th scope="row"> ${element.lectureid} </th>
-              <td> ${element.facultyid} </td>
-              <td> ${element.semesterid} </td>
-              <td> ${element.dayofweek} </td>
-              <td>${element.starttime}</td>
-              <td>${element.endtime}</td>
-            </tr>"`;
+          <th scope="row"> ${element.lectureid} </th>
+          <td> ${element.facultyid} </td>
+          <td> ${element.semesterid} </td>
+          <td> ${element.dayofweek} </td>
+          <td>${element.starttime}</td>
+          <td>${element.endtime}</td>
+          </tr>"`;
           parent.append(lectures);
+          basicDataQuery.pageSize = response.length;
+          totalNoOfLectures = response.length;
         });
+        showEntries();
+        $("#page-size").attr("value", response.length);
       });
   });
 
