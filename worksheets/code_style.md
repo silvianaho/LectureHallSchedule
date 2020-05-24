@@ -97,7 +97,7 @@ Semicolon
 ### 👎 Bad Example
 
 ```js
-var facultyId = 123;
+var facultyId = 123
 ```
 
 ### 👍 Good Example
