@@ -6,28 +6,25 @@ import { getLectures } from '../controllers';
 
 export const transformQueries = (req, res, next) => {
   if (req.query) {
-    const { lectureId, facultyId, semesterId, dayOfWeek } = req.query;
+    const { facultyId, semesterId, dayOfWeek } = req.query;
     let { page, pageSize } = req.query;
     // console.log(lectureId, facultyId, semesterId, dayOfWeek, page, pageSize);
     // eslint-disable-next-line no-console
     let whereClause = '';
     let limitOffsetClause = '';
-    if (!lectureId && !facultyId && !semesterId && !dayOfWeek) whereClause = '';
+    if (!facultyId && !semesterId && !dayOfWeek) whereClause = '';
     else {
       whereClause = 'WHERE ';
-      if (lectureId) whereClause += `lectureid = ${lectureId}`;
       if (facultyId)
-        whereClause += lectureId
-          ? ` AND facultyId = ${facultyId}`
-          : `facultyId = ${facultyId}`;
+        whereClause += `facultyId = ${facultyId}`;
       if (semesterId)
         whereClause +=
-          lectureId || facultyId
+          facultyId
             ? ` AND semesterId = ${semesterId}`
             : `semesterId = ${semesterId}`;
       if (dayOfWeek)
         whereClause +=
-          lectureId || facultyId || semesterId
+          facultyId || semesterId
             ? ` AND dayOfWeek = ${dayOfWeek}`
             : `dayOfWeek = ${dayOfWeek}`;
     }

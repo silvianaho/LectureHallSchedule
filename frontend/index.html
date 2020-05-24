@@ -71,13 +71,13 @@
       <!-- content -->
       <div class="px-3 mx-3" id="content">
         <!-- mobile sidebar control -->
-        <div class="title-filter mt-5">
+        <div class="title-filter mt-4">
           <div class="page-title float-left">
             <h1 id="sidebar-collapse-small-screen">
               <span class="close-side">&#171;</span>
               <span class="open">&#187;</span>
             </h1>
-            <h2 class="mb-3 font-weight-normal">DATA VIEWER</h2>
+            <h2 class="mb-3 font-weight-normal">LECTURES</h2>
           </div>
           <!-- filter -->
           <div class="filter pt-3 float-right">
@@ -85,12 +85,15 @@
             <form class="mb-3" id="filter-form">
               <div class="form-row align-items-center">
                 <div class="col-lg-auto pb-md-1">
+                  <!-- <input type="number" name="facultyId" id="faculty-id" placeholder="Faculty ID" class="form-control form-control-sm"> -->
                   <select
                     name="facultyId"
                     id="faculty-id"
                     class="form-control custom-select custom-select-sm"
                   >
-                  <option value="" selected disabled>Filter by Faculty ID</option>
+                    <option value="" selected disabled
+                      >Filter by Faculty ID</option
+                    >
                   </select>
                 </div>
                 <div class="col-lg-auto pb-md-1">
@@ -102,10 +105,6 @@
                     <option value="" selected disabled
                       >Filter by Semester ID</option
                     >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
                   </select>
                 </div>
                 <div class="col-lg-auto pb-md-1">
@@ -162,30 +161,58 @@
             <p class="display-4">Please try again.</p>
           </div>
         </div>
-        <span>Show <input fn="changePageSize" type="number" class="form-control w-25 d-inline" name="entries" value="" id="page-size"/> Out of <span id="total-count"></span> Entries</span>
+        <span
+          >Show
+          <input
+            type="number"
+            class="form-control w-25 d-inline"
+            name="entries"
+            value=""
+            id="page-size"
+          />Entries</span
+        >
 
+        <small class="float-right ">Showing  <span id="start-id"></span> to  <span id="end-id"></span> out of <span id="total-count"></span> entries</small>
         <!-- pagination -->
         <nav aria-label="Page navigation">
           <ul class="pagination mb-0 justify-content-center">
             <li class="page-item">
-              <a fn="gotoFirstPage" class="page-link" href="#" id="basic-data-first-page" aria-label="First Page">
-                <span aria-hidden="true">&#8249;</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a fn="changePage" value=-1 class="page-link" href="#" id="basic-data-previous-page" aria-label="Previous">
+              <button
+                class="page-link"
+                id="basic-data-first-page"
+                aria-label="First Page"
+              >
                 <span aria-hidden="true">&laquo;</span>
-              </a>
+              </button>
             </li>
             <li class="page-item">
-              <a fn="changePage" value=1 class="page-link" href="#" id="basic-data-next-page" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+              <button
+                value="-1"
+                class="page-link"
+                id="basic-data-previous-page"
+                aria-label="Previous"
+              >
+                <span aria-hidden="true">&#8249;</span>
+              </button>
             </li>
             <li class="page-item">
-              <a fn="gotoLastPage" value="2" class="page-link" href="#" id="basic-data-last-page" aria-label="Last Page">
+              <button
+                value="1"
+                class="page-link"
+                id="basic-data-next-page"
+                aria-label="Next"
+              >
                 <span aria-hidden="true">&#8250;</span>
-              </a>
+              </button>
+            </li>
+            <li class="page-item">
+              <button
+                class="page-link"
+                id="basic-data-last-page"
+                aria-label="Last Page"
+              >
+                <span aria-hidden="true">&raquo;</span>
+              </button>
             </li>
           </ul>
         </nav>

@@ -36,7 +36,7 @@ This document helps you identify the smaller tasks and helps you create a rough 
 |  3   | Basic    | Backend & Documentation   | Data Query & Test + Data Viewer Wireframe | <li>Setup code testing frameworks, REST Client, `get /basic/data`;</li> <li>`basic_frontend_data_viewer.md`, `api.md`</li> |
 |  4   | Basic    | Backend & Documentation   | Insert API                             | <li>`post /basic/insert`;</li><li> `api.md`</li> |
 |  5   | Basic    | Backend & Documentation   | Result API & integrate with frontend + Result Wireframe | <li>`get /basic/result`, integrate with frontend;</li><li> `api.md`, `basic_frontend_result_viewer.md`</li> |
-|  6   | Basic    | Backend & Documentation   | Final Testing + Finish documentation   | <li>Test all APIs, nitpicking;</li><li>Nitpicking, grammar and diction checks</li> |
+|  6   | Basic    | Demo                      | Final Testing + Demo                   | <li>Test all APIs, nitpicking;</li><li>Nitpicking, grammar and diction checks</li> |
 ### Member 2 - HEZEXI
 | Week | Level    | Component                 | Feature                                | Task           |
 | ---- | -------- | ------------------------- | -------------------------------------- | -------------- |

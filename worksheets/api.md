@@ -24,14 +24,14 @@ Each API should include
 
 ### Parameters
 
-| parameter  | datatype       | example   | optional  |
-| ---------- | -------------- | --------- | --------- |
-| lectureId  | BIGINT         | 123456789 | Yes       |
-| facultyId  | BIGINT         | 123456789 | Yes       |
-| semesterId | BIGINT         | 123456789 | Yes       |
-| dayOfWeek  | SMALLINT (1-7) | 1         | Yes       |
-| pageSize   | INT            | 2         | Yes       |
-| page       | INT            | 2         | Yes       |
+| parameter  | datatype       | example   | optional  | default |
+| ---------- | -------------- | --------- | --------- | ------- |
+| lectureId  | BIGINT         | 123456789 | Yes       |         |
+| facultyId  | BIGINT         | 123456789 | Yes       |         |
+| semesterId | BIGINT         | 123456789 | Yes       |         |
+| dayOfWeek  | SMALLINT (1-7) | 1         | Yes       |         |
+| pageSize   | INT            | 2         | Yes       | 10      |
+| page       | INT            | 2         | Yes       | 0       |
 
 ### Response Body
 
@@ -98,14 +98,14 @@ GET /basic/data?dayOfWeek=7
 
 ### Parameters
 
-| parameter  | datatype       | example    |
-| ---------- | -------------- | ---------- |
-| lectureId  | BIGINT         | 1234567890 |
-| facultyId  | BIGINT         | 1234567890 |
-| semesterId | BIGINT         | 1234567890 |
-| dayOfWeek  | SMALLINT (1-7) | 1          |
-| startTime  | TIME           | 23:59:59   |
-| endTime    | TIME           | 23:59:59   |
+| parameter  | datatype       | example    | optional |
+| ---------- | -------------- | ---------- | -------- |
+| lectureId  | BIGINT         | 1234567890 | No       |
+| facultyId  | BIGINT         | 1234567890 | No       |
+| semesterId | BIGINT         | 1234567890 | No       |
+| dayOfWeek  | SMALLINT (1-7) | 1          | No       |
+| startTime  | TIME           | 23:59:59   | No       |
+| endTime    | TIME           | 23:59:59   | No       |
 
 ### Response Body
 
@@ -134,7 +134,7 @@ GET /basic/data?dayOfWeek=7
 ### Sample Request
 
 ```http
-GET /basic/insert
+POST /basic/insert
 ```
 
 ### Sample Response

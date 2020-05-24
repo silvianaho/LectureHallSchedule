@@ -12,9 +12,8 @@ This report is for you to document the progres of your project. You should also 
 
 -   integrate with frontend
 -   integrate with backend
--   fixe major bug
+-   fix major bug
+
 ## Additional Thoughts
-
--   Almost there
-
--  
+-  Almost there
+-  Pagination is so difficult

@@ -3,6 +3,10 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3000/basic/data?pageSize=5 HTTP/1.1
+Content-Type: application/json
+
+###
 GET http://localhost:3000/basic/data?facultyId=1234567890&dayOfWeek=3 HTTP/1.1
 Content-Type: application/json
 
