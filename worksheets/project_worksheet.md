@@ -76,10 +76,10 @@ Link: [Component Diagram](https://www.plantuml.com/plantuml/svg/0/JK-x3i8m3Dpz5L
 
 ### Questions:
 
-1. Does the frontend communicate with the mobile? `(No)`
-2. Does the frontend communicate directly with the database? `(No)`
+1. Does the frontend communicate with the mobile? `No`
+2. Does the frontend communicate directly with the database? `No`
 3. How should the frontend display data from the database? `By calling the API to get the data then populating the elements upon a successful event`
-4. How does the frontend communicate with backend? `By making API calls`
+4. How does the frontend communicate with backend? `By making API calls to the backend`
 
 ---
 
@@ -166,8 +166,12 @@ how can frontend/mobile\nget data from backend?
 Think about how you can do it and type your answer below:
 
 ```
-By doing API calls to the server. 
-We can do so using libraries like axios or doing ajax calls or fetching the data using fetch().
+1. Make the API on the backend
+2. Create a button/link on the frontend
+3. Create a script that is triggered by a click event to call the API (we can do so by doing ajax calls or fetching the data using fetch() or use a library like axios)
+4. Server will return the data or an error to the frontend
+5. Upon success: process the result, if needed, and append html components/elements to the front end
+6. If the server returns an error, redirect to error page or show error message without redirect. 
 ```
 
 ---

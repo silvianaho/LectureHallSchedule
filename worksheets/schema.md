@@ -8,6 +8,8 @@ You may refer to the following link to learn more about postgresql schema:
 2. [Foreign Keys](https://www.postgresqltutorial.com/postgresql-foreign-key/)
 
 The following are examples of how you can create a table, replace the examples with your own create statements of all your table.
+ 
+Create lectures and technicians table
 ```sql
 CREATE TABLE IF NOT EXISTS lectures(
    lectureId BIGINT PRIMARY KEY,
@@ -16,7 +18,7 @@ CREATE TABLE IF NOT EXISTS lectures(
    dayOfWeek SMALLINT NOT NULL,
    startTime TIME WITHOUT TIME ZONE NOT NULL,
    endTime TIME WITHOUT TIME ZONE NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS technicians(
    technicianId BIGINT PRIMARY KEY,
