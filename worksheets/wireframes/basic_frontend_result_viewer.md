@@ -3,7 +3,7 @@
 
 ## Wireframe
 
-![Wireframe](assets/resultviewer-wireframe.PNG)
+![Wireframe](assets/Basic-resultviewer.PNG)
 
 ## Justifications
 
