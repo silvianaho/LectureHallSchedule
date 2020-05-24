@@ -36,8 +36,8 @@ Link: [Use Case Diagram](https://www.plantuml.com/plantuml/svg/0/RP5D4e8m38NtFKM
 
 The above listed are functional requirements, that is, **WHAT** the system should allow users to do. There are also non-functional requirements that state **HOW** a system should perform.
 
--   Q1. Consider the use case of `Compute basic/advance result`, **HOW** is this functionality made available to both JiBaBoom and Adminstrator _(Hint: They are different)_? `JiBaBoom can use the compute function to test out their algorithm and the administrator will use it. Therefore, the service is made available to both JiBaBoom and the administrator.`
--   Q2. Consider the use case of `Insert basic/advance data`. **HOW** is the data stored? `Jibaboom will enter the data to PostgreSQL with insert statement(s) and the data will be stored in the database.`
+-   Q1. Consider the use case of `Compute basic/advance result`, **HOW** is this functionality made available to both JiBaBoom and Adminstrator _(Hint: They are different)_? `JiBaBoom can use the compute function to test out their algorithm by calling the API and the administrator will use it to see result from the frontend. Therefore, the service is made available to both JiBaBoom and the administrator but from different interfaces.`
+-   Q2. Consider the use case of `Insert basic/advance data`. **HOW** is the data stored? `Jibaboom will enter the data into the database by using a POST request or inserting the data directly into the database. Then, if there is no error, the data will be stored in the database.`
 
 ---
 
