@@ -1,34 +1,41 @@
 ## Wireframe
-![Justificaiton1](assets/wireframe.PNG)
+![Justification 1](assets/wireframe.PNG)
 ### Justification 1
-![Justificaiton1](assets/datagovsg.PNG)
+![Justificaiton 1](assets/datagovsg.PNG)
 Example page from data.gov.sg(https://data.gov.sg/dataset/civil-aircraft-arrivals-departures-passengers-and-mail-changi-airport-monthly?view_id=f1000da9-4036-4278-b241-eeec524ca229&resource_id=1a08ce4d-aafc-4fee-afb7-e8f4c3a41d80)<br/>
 #### Good Points
 
-1.Data.gov.sg data page has a very neat table<br/>
-2.they use grey and white to separate each row, allowing the user to have a better view of the data. <br/>
-3.there are only two color-dark blue and grey. Simple but pleasant to view.<br/>
+1. [data.gov.sg](https://data.gov.sg/)'s data viewer page has a very neat and clear table<br/>
+2. They used grey and white to separate each row, allowing the user to have a better view of the data. <br/>
+3. There are only two colors — dark blue and grey. These colors are simple but pleasant on the eyes. Blue can [signify a more data-focused area](https://www.desantisbreindel.com/insights/b2b-tech-brand-colors/) and gray signifies formalilty as this is a government website.<br/>
 #### Bad Points
-1.the table is small and very concentred<br/>
-2.would be better if there is more space in each cell<br/>
+1. The height of each row is too small and packed, making it harder to read.<br/>
+2. There is no table highlighting to help the reader read better despite the small row.<br/>
+3. There are two scrollbars on even pages that only scroll for a few pixels and gave the user no additional information.
+
+
 ### Justification 2
-![Justificaiton2](assets/kaggle.PNG)
+![Justification 2](assets/kaggle.PNG)
 Kaggle(https://www.kaggle.com/jessemostipak/animal-crossing)<br/>
-#### Good Points
 
-1.Kaggle has the whole table fixed in with no pagination. <br/>
-2.It saves time for the user, as they do not need to click on pages which may take time to load. <br/>
-3.they used a theme color of blue.<br/>
+#### Good Points
+1. Kaggle has the whole table fixed in with no pagination and infinite scrolling. This is more intuitive and time saving because the user would only have to scroll to get more data from the same table.<br/>
+2. They have a blue theme, which can [signify a more data-focused area](https://www.desantisbreindel.com/insights/b2b-tech-brand-colors/). Additionally, they stuck to it and this makes the website look more cohesive.<br/>
 #### Bad Points
-1.the sidebar is higher than the main table.<br/>
-2.without pagination it would be hard for the user to view the data at the back<br/>
-### Justification 3
-![Justificaiton3](assets/moh.PNG)
-moh(https://www.moh.gov.sg/resources-statistics)<br/>
-#### Good Points
+1. The sidebar does not align with (higher than) the main table and this does not look aesthetically pleasing.<br/>
+2. Without pagination, it would be confusing and difficult for the user to navigate around larger datasets. Additionally, larger datasets could be take more time to load and makes the experience less smooth.<br/>
 
- 1.they use a dropdown so that they don’t have to do validation on the user’s input, saves time for coding. <br/>
- 2.The reset button is good, the user doesn’t have to press backspace anymore.<br/>
+
+### Justification 3
+![Justification 3](assets/moh.PNG)
+moh(https://www.moh.gov.sg/resources-statistics)<br/>
+
+#### Good Points
+ 1. They are using checkboxes to filter categorical data (type and date) to help the user get an overalll view of the dataset that they have.<br/>
+ 2. The reset button is convenient to have in case the user wants to remove all filters at once.<br/>
+
  #### Bad Points
- 1.One thing I don’t like about the page is the pagination colour<br/>
- 2.current page colour is not very obvious, it could be better to have the whole bottom in another color as what data.gov.sg did<br/>
+ 1. The navigation bar is taking too much vertical space. Most user have horizontal screen, so vertical space is important to get a better experience while using the platform.
+ 2. The navigation links are too small for the size of the navigation bar.
+ 3. The pagination button sizes are not uniform.
+ 4. Double pagination is redundant for a page with only 8 cards.
