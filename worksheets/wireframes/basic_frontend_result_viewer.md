@@ -10,6 +10,7 @@
 ### Justification 1
 
 ![Justificaiton1](assets/Gizmo.PNG)
+example from gizmo(https://www.freecollegeschedulemaker.com/)
 
 #### Good Points
 
@@ -23,6 +24,7 @@
 2. the form is too small, input is all clustered together
 ### Justification 2
 ![Justificaiton2](assets/google-calendar.png)
+example from google-calender(https://calendar.google.com/calendar/r?pli=1)
 #### Good Points
 1.It is very easy for the user to look at the timing</br>
 2.The design is simple but appealing to eyes</br>
@@ -32,6 +34,7 @@
 
 ### Justification 3
 ![Justificaiton3](assets/xdguru-administrator-ui-today.png)
+example from administrator(https://gumroad.com/l/jGvhc)
 #### Good Points
 1.There is a line to indicate half an hour</br>
 2.Very nice theme colour</br>
