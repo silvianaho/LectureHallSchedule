@@ -199,6 +199,7 @@ $(document).ready(() => {
     basicDataQuery.semesterId = $("#semester-id").val();
     basicDataQuery.dayOfWeek = $("#day-of-week").val();
     basicDataQuery["page"] = 0;
+    basicDataQuery["pageSize"] = 10;
     settings = {
       url: "http://localhost:3000/basic/data", //backend search
       method: "GET",

@@ -1,10 +1,10 @@
 import express from 'express';
-// import { getLectures, addLecture, getResult } from '../controllers';
+import { validate } from '../controllers';
 import {
   mapMultipleValues,
   transformQueries,
   transformQueriesCompute,
-  getPageInfoOnLoad
+  getPageInfoOnLoad,
 } from '../middleware';
 
 const indexRouter = express.Router();
@@ -15,7 +15,7 @@ indexRouter.get('/basic/info', getPageInfoOnLoad);
 indexRouter.get('/basic/data', transformQueries);
 
 /* POST basic lecture page. */
-indexRouter.post('/basic/insert', mapMultipleValues);
+indexRouter.post('/basic/insert', validate('createLecture'), mapMultipleValues);
 
 /* GET basic result */
 indexRouter.get('/basic/result', transformQueriesCompute);

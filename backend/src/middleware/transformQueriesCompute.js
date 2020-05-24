@@ -28,7 +28,7 @@ export const transformQueriesCompute = (req, res, next) => {
     console.log(clause);
     getResult(req.query.queryString).then((result) => {
       console.log(result.result);
-      
+
       if (result.error) return next(result.error);
       return res.status(200).json(result.result);
     });

@@ -15,13 +15,11 @@ export const transformQueries = (req, res, next) => {
     if (!facultyId && !semesterId && !dayOfWeek) whereClause = '';
     else {
       whereClause = 'WHERE ';
-      if (facultyId)
-        whereClause += `facultyId = ${facultyId}`;
+      if (facultyId) whereClause += `facultyId = ${facultyId}`;
       if (semesterId)
-        whereClause +=
-          facultyId
-            ? ` AND semesterId = ${semesterId}`
-            : `semesterId = ${semesterId}`;
+        whereClause += facultyId
+          ? ` AND semesterId = ${semesterId}`
+          : `semesterId = ${semesterId}`;
       if (dayOfWeek)
         whereClause +=
           facultyId || semesterId

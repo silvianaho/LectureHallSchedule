@@ -2,6 +2,7 @@ import logger from 'morgan';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
+// import expressValidator from 'express-validator';
 import cors from 'cors';
 import indexRouter from './routes/index';
 
@@ -12,6 +13,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(expressValidator());
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
