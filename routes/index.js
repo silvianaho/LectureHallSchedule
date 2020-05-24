@@ -14,15 +14,16 @@ var _controllers = require("../controllers");
 var _middleware = require("../middleware");
 
 var indexRouter = _express["default"].Router();
+
+indexRouter.get('/basic/info', _middleware.getPageInfoOnLoad);
 /* GET basic data viewer data */
 
-
-indexRouter.get('/basic/data', _controllers.lectures);
+indexRouter.get('/basic/data', _middleware.transformQueries);
 /* POST basic lecture page. */
 
-indexRouter.post('/basic/insert', _middleware.insertMultipleValues, _controllers.addLecture);
+indexRouter.post('/basic/insert', (0, _controllers.validate)('createLecture'), _middleware.mapMultipleValues);
 /* GET basic result */
-// indexRouter.get('/basic/result', resultPage);
 
+indexRouter.get('/basic/result', _middleware.transformQueriesCompute);
 var _default = indexRouter;
 exports["default"] = _default;
