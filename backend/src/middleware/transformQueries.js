@@ -14,16 +14,11 @@ export const transformQueries = (req, res, next) => {
     let limitOffsetClause = '';
     if(facultyId || semesterId || dayOfWeek) {
       whereClause = 'WHERE ';
-      if (facultyId) whereClause += `facultyId = ${facultyId}`;
-      if (semesterId)
-        whereClause += facultyId
-          ? ` AND semesterId = ${semesterId}`
-          : `semesterId = ${semesterId}`;
-      if (dayOfWeek)
-        whereClause +=
-          facultyId || semesterId
-            ? ` AND dayOfWeek = ${dayOfWeek}`
-            : `dayOfWeek = ${dayOfWeek}`;
+      const whereClauseConditions = [];
+      if (facultyId) whereClauseConditions.push("facultyId = ".concat(facultyId));
+      if (semesterId) whereClauseConditions.push("semesterId = ".concat(semesterId));
+      if (dayOfWeek) whereClauseConditions.push("dayOfWeek = ".concat(dayOfWeek));
+      whereClause += whereClauseConditions.join("AND");
     }
 
     if (!page || !pageSize) {
