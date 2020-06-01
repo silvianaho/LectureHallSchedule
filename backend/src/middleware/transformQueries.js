@@ -12,8 +12,7 @@ export const transformQueries = (req, res, next) => {
     // eslint-disable-next-line no-console
     let whereClause = '';
     let limitOffsetClause = '';
-    if (!facultyId && !semesterId && !dayOfWeek) whereClause = '';
-    else {
+    if(facultyId || semesterId || dayOfWeek) {
       whereClause = 'WHERE ';
       if (facultyId) whereClause += `facultyId = ${facultyId}`;
       if (semesterId)
