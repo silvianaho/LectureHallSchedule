@@ -106,6 +106,16 @@ function disablePaginationButton() {
     $("#basic-data-last-page").parent().addClass("disabled");
     $("#basic-data-next-page").attr("disabled", true);
     $("#basic-data-next-page").parent().addClass("disabled");
+  } else {
+    $("#basic-data-first-page").attr("disabled", false);
+    $("#basic-data-first-page").parent().removeClass("disabled");
+    $("#basic-data-previous-page").attr("disabled", false);
+    $("#basic-data-previous-page").parent().removeClass("disabled");
+
+    $("#basic-data-last-page").attr("disabled", false);
+    $("#basic-data-last-page").parent().removeClass("disabled");
+    $("#basic-data-next-page").attr("disabled", false);
+    $("#basic-data-next-page").parent().removeClass("disabled");
   }
   showEntries();
 }

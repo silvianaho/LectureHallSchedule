@@ -3,10 +3,13 @@ import { addLecture } from '../controllers';
 const { validationResult } = require('express-validator');
 
 export const mapMultipleValues = (req, res, next) => {
+  if (req.body.data.length === 0) {
+    return res.status(200).json({ result: 'success' });
+  }
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log(errors);
-    return res.status(422).json({ errors });
+    return res.status(422).json({ error: JSON.stringify(errors), code: 400 });
   }
   const { data } = req.body;
   const values = data

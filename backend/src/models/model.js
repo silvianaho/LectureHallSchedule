@@ -30,7 +30,6 @@ class Model {
     const query = `
     INSERT INTO ${this.table} (${columns})
     VALUES ${values}
-    RETURNING ${columns}
     `;
     return this.pool.query(query);
   }

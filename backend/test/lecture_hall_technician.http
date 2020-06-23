@@ -1,0 +1,151 @@
+@url = http://localhost:3000/basic/insert
+@httpMethod = POST
+
+# @name EmptyData
+{{httpMethod}} {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+	"data": []
+}
+
+###
+
+# @name BulkInsert
+
+{{httpMethod}} {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "data": [
+        {
+            "lectureId":1234567890,
+            "semesterId":9999999991,
+            "facultyId":9999999991,
+            "dayOfWeek":1,
+            "startTime":"1352",
+            "endTime":"2134"
+        },
+        {
+            "lectureId":9999999991,
+            "semesterId":9999999992,
+            "facultyId":9999999991,
+            "dayOfWeek":2,
+            "startTime":"0912",
+            "endTime":"1123"
+        },
+        {
+            "lectureId":9999999992,
+            "semesterId":9999999991,
+            "facultyId":9999999991,
+            "dayOfWeek":3,
+            "startTime":"1534",
+            "endTime":"2145"
+        },
+        {
+            "lectureId":9999999993,
+            "semesterId":9999999992,
+            "facultyId":9999999991,
+            "dayOfWeek":4,
+            "startTime":"2143",
+            "endTime":"2323"
+        },
+        {
+            "lectureId":9999999994,
+            "semesterId":9999999991,
+            "facultyId":9999999991,
+            "dayOfWeek":5,
+            "startTime":"1111",
+            "endTime":"2233"
+        },
+        {
+            "lectureId":9999999995,
+            "semesterId":9999999992,
+            "facultyId":9999999991,
+            "dayOfWeek":6,
+            "startTime":"0000",
+            "endTime":"0001"
+        },
+        {
+            "lectureId":9999999996,
+            "semesterId":9999999991,
+            "facultyId":9999999992,
+            "dayOfWeek":7,
+            "startTime":"2222",
+            "endTime":"2223"
+        },
+        {
+            "lectureId":9999999997,
+            "semesterId":9999999992,
+            "facultyId":9999999992,
+            "dayOfWeek":1,
+            "startTime":"2350",
+            "endTime":"2359"
+        },
+        {
+            "lectureId":9999999998,
+            "semesterId":9999999991,
+            "facultyId":9999999992,
+            "dayOfWeek":2,
+            "startTime":"1234",
+            "endTime":"1345"
+        },
+        {
+            "lectureId":9999999999,
+            "semesterId":9999999992,
+            "facultyId":9999999992,
+            "dayOfWeek":3,
+            "startTime":"2313",
+            "endTime":"2355"
+        }
+    ]
+}
+
+###
+
+# @name PartialDuplicate
+
+{{httpMethod}} {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+	"data": [
+        {
+            "lectureId":9999999999,
+            "semesterId":9999999992,
+            "facultyId":9999999992,
+            "dayOfWeek":3,
+            "startTime":"2313",
+            "endTime":"2355"
+        },
+        {
+            "lectureId":1234567891,
+            "semesterId":9999999992,
+            "facultyId":9999999992,
+            "dayOfWeek":3,
+            "startTime":"2313",
+            "endTime":"2355"
+        }
+    ]
+}
+
+###
+
+# @name InvalidMissingField
+
+{{httpMethod}} {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+	"data": [
+        {
+            "lectureId": 9934577891,
+            "semesterId": 4234567891,
+            "facultyId": 1234567890,
+            "startTime": "0152",
+            "endTime": "0241"
+        }
+    ]
+}
+
+###
