@@ -2,45 +2,12 @@
 /* eslint-disable nonblock-statement-body-position */
 import createError from "http-errors";
 import Model from "../models/model";
-import { intervalScheduling } from "../algo";
 
-const basicModel = new Model("lectures");
+const advanceModel = new Model("technicians");
 
-export const getPageInfo = async () => {
+export const getTechnicians = async (queryString) => {
   try {
-    const [facultyid, semesterid, totalCount] = await Promise.all([
-      basicModel.selectDistinct("facultyid"),
-      basicModel.selectDistinct("semesterid"),
-      basicModel.select("COUNT (*)"),
-    ]);
-    const data = {
-      facultyid: facultyid.rows,
-      semesterid: semesterid.rows,
-      totalCount: totalCount.rows[0].count,
-    };
-    if (data.totalCount === 0) {
-      return Promise.resolve({
-        error: createError("Not Found", 404),
-        result: null,
-      });
-    }
-    return Promise.resolve({ error: null, result: data });
-  } catch (err) {
-    if (err.errno === "ENOTFOUND")
-      return Promise.resolve({
-        error: createError("Database Error", 500),
-        result: null,
-      });
-    return Promise.resolve({
-      error: createError(JSON.stringify(err), 500),
-      result: null,
-    });
-  }
-};
-
-export const getLectures = async (queryString) => {
-  try {
-    const data = await basicModel.select("*", `${queryString}`);
+    const data = await advanceModel.select("*", `${queryString}`);
     if (data.rows.length === 0)
       return Promise.resolve({
         error: createError("Not Found", 404),
@@ -62,11 +29,11 @@ export const getLectures = async (queryString) => {
   }
 };
 
-export const addLecture = async (reqData) => {
+export const addTechnician = async (reqData) => {
   // eslint-disable-next-line no-unused-vars
   const { data, columns, values } = reqData;
   try {
-    const resultData = await basicModel.insert(columns, values);
+    const resultData = await advanceModel.insert(columns, values);
     if (resultData)
       return Promise.resolve({ error: null, result: { result: "success" } });
     return null;
@@ -97,24 +64,6 @@ export const addLecture = async (reqData) => {
         error: createError("Database Error", 500),
         result: null,
       });
-    return Promise.resolve({
-      error: createError("Internal Server Error", 500),
-      result: null,
-    });
-  }
-};
-
-export const getResult = async (queryString) => {
-  try {
-    const data = await basicModel.select("*", `${queryString}`);
-    const result = intervalScheduling(data.rows);
-    if (result.length === 0)
-      return Promise.resolve({
-        error: createError("Sorry, we could not find what you asked for", 404),
-        result: null,
-      });
-    return Promise.resolve({ error: null, result });
-  } catch (err) {
     return Promise.resolve({
       error: createError("Internal Server Error", 500),
       result: null,

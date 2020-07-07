@@ -1,11 +1,11 @@
-import { pool } from './pool';
+import { pool } from "./pool";
 
 class Model {
   constructor(table) {
     this.pool = pool;
     this.table = table;
     this.pool.on(
-      'error',
+      "error",
       (err, client) => `Error, ${err}, on idle client ${client}`
     );
   }
@@ -20,17 +20,18 @@ class Model {
     return this.pool.query(query);
   }
 
-  async select(columns, clause) {
+  async select(columns, clause = "") {
     let query = `SELECT ${columns} FROM ${this.table} `;
     if (clause) query += clause;
     return this.pool.query(query);
   }
 
-  async insertLecture(columns, values) {
+  async insert(columns, values) {
     const query = `
     INSERT INTO ${this.table} (${columns})
     VALUES ${values}
     `;
+    console.log(query)
     return this.pool.query(query);
   }
 }
