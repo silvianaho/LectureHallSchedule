@@ -18,7 +18,7 @@ export const transformQueries = (req, res, next) => {
       if (facultyId) whereClauseConditions.push("facultyId = ".concat(facultyId));
       if (semesterId) whereClauseConditions.push("semesterId = ".concat(semesterId));
       if (dayOfWeek) whereClauseConditions.push("dayOfWeek = ".concat(dayOfWeek));
-      whereClause += whereClauseConditions.join("AND");
+      whereClause += whereClauseConditions.join(" AND ");
     }
 
     if (!page || !pageSize) {
@@ -26,15 +26,16 @@ export const transformQueries = (req, res, next) => {
       if (!pageSize) pageSize = 10;
     }
     limitOffsetClause = `LIMIT ${pageSize} OFFSET ${page * pageSize}`;
-    const queryString = `${whereClause}${limitOffsetClause}`;
+    const queryString = `${whereClause} ${limitOffsetClause}`;
     req.query.queryString = queryString;
+    const baseUrl = req.url.split("?")[0];
 
-    if (req.url === "/basic/data") {
+    if (baseUrl === "/basic/data") {
       getLectures(req.query.queryString).then((result) => {
         if (result.error) return next(result.error);
         return res.status(200).json(result.result);
       });
-    } else if (req.url === "/advance/data") {
+    } else if (baseUrl === "/advance/data") {
       getTechnicians(req.query.queryString).then((result) => {
         if (result.error) return next(result.error);
         return res.status(200).json(result.result);

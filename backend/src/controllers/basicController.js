@@ -4,7 +4,7 @@ import createError from "http-errors";
 import Model from "../models/model";
 import { intervalScheduling } from "../algo";
 
-const basicModel = new Model("lectures");
+export const basicModel = new Model("lectures");
 
 export const getPageInfo = async () => {
   try {
@@ -104,7 +104,7 @@ export const addLecture = async (reqData) => {
   }
 };
 
-export const getResult = async (queryString) => {
+export const getHalls = async (queryString) => {
   try {
     const data = await basicModel.select("*", `${queryString}`);
     const result = intervalScheduling(data.rows);

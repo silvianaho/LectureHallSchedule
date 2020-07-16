@@ -31,7 +31,6 @@ class Model {
     INSERT INTO ${this.table} (${columns})
     VALUES ${values}
     `;
-    console.log(query)
     return this.pool.query(query);
   }
 }

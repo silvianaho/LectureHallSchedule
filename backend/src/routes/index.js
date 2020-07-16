@@ -29,6 +29,6 @@ indexRouter.get("/advance/data", transformQueries);
 indexRouter.post("/advance/insert", validate("createTechnician"), mapMultipleValues);
 
 /* GET advance result */
-// indexRouter.get("/advance/result", transformQueriesCompute);
+indexRouter.get("/advance/result", transformQueriesCompute);
 
 export default indexRouter;

@@ -1,0 +1,103 @@
+POST http://localhost:3000/advance/insert HTTP/1.1
+  Content-Type: application/json
+  
+  {
+	"data": [
+		{
+			"technicianId": "1000000001",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "1",
+			"startTime": "1000",
+			"endTime": "1100"
+		},
+		{
+			"technicianId": "1000000002",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "1",
+			"startTime": "1000",
+			"endTime": "1130"
+		},
+		{
+			"technicianId": "1000000003",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "2",
+			"startTime": "1000",
+			"endTime": "1130"
+		},
+		{
+			"technicianId": "1000000004",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "2",
+			"startTime": "1130",
+			"endTime": "1300"
+		},
+		{
+			"technicianId": "1000000005",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "3",
+			"startTime": "0900",
+			"endTime": "1030"
+		},
+		{
+			"technicianId": "1000000006",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "3",
+			"startTime": "1000",
+			"endTime": "1200"
+		},
+		{
+			"technicianId": "1000000007",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "3",
+			"startTime": "1100",
+			"endTime": "1400"
+		},
+		{
+			"technicianId": "1000000008",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "4",
+			"startTime": "1000",
+			"endTime": "1300"
+		},
+		{
+			"technicianId": "1000000009",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "4",
+			"startTime": "1000",
+			"endTime": "1300"
+		},
+		{
+			"technicianId": "1000000010",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "4",
+			"startTime": "1215",
+			"endTime": "1425"
+		},
+		{
+			"technicianId": "1000000011",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "4",
+			"startTime": "1215",
+			"endTime": "1500"
+		},
+		{
+			"technicianId": "1000000012",
+			"facultyId": "1100000000",
+			"semesterId": "1110000000",
+			"dayOfWeek": "4",
+			"startTime": "0800",
+			"endTime": "1400"
+		}
+	]
+}
