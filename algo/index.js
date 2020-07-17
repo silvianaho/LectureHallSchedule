@@ -15,3 +15,15 @@ Object.keys(_intervalScheduling).forEach(function (key) {
     }
   });
 });
+
+var _overlappingInterval = require("./overlappingInterval");
+
+Object.keys(_overlappingInterval).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _overlappingInterval[key];
+    }
+  });
+});
