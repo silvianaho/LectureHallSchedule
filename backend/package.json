@@ -10,7 +10,8 @@
     "pretty": "prettier --write \"**/*.{js,json}\" \"!node_modules/**\" \"!build/**\"",
     "postpretty": "npm run lint --fix",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register",
-    "runQuery": "babel-node ./src/utils/runQuery"
+    "runQuery": "babel-node ./src/utils/runQuery",
+    "deploy": "git subtree push --prefix backend heroku master"
   },
   "dependencies": {
     "axios": "^0.19.2",
