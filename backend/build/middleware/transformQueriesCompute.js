@@ -18,21 +18,36 @@ var transformQueriesCompute = function transformQueriesCompute(req, res, next) {
         facultyId = _req$query.facultyId,
         semesterId = _req$query.semesterId,
         dayOfWeek = _req$query.dayOfWeek;
-    var clause = '';
-    if (!facultyId && !semesterId && !dayOfWeek) clause = '';else {
-      clause = 'WHERE ';
-      if (facultyId) clause += "facultyId = ".concat(facultyId);
-      if (semesterId) clause += facultyId ? " AND semesterId = ".concat(semesterId) : "semesterId = ".concat(semesterId);
-      if (dayOfWeek) clause += facultyId || semesterId ? " AND dayOfWeek = ".concat(dayOfWeek) : "dayOfWeek = ".concat(dayOfWeek);
-      clause += ' ORDER BY starttime ASC';
+
+    if (!facultyId || !semesterId || !dayOfWeek) {
+      return res.status(400).json({
+        error: "Unprocessable Entity; Invalid Query Detected",
+        code: 422
+      });
     }
-    req.query.queryString = clause;
-    console.log(clause);
-    (0, _controllers.getResult)(req.query.queryString).then(function (result) {
-      console.log(result.result);
-      if (result.error) return next(result.error);
-      return res.status(200).json(result.result);
-    });
+
+    var whereClause = "WHERE ";
+    var whereClauseConditions = [];
+    whereClauseConditions.push("facultyId = ".concat(facultyId));
+    whereClauseConditions.push("semesterId = ".concat(semesterId));
+    whereClauseConditions.push("dayOfWeek = ".concat(dayOfWeek));
+    whereClause += whereClauseConditions.join(" AND ");
+    whereClause += " ORDER BY starttime ASC";
+    req.query.queryString = whereClause; // console.log(clause);
+
+    var baseUrl = req.url.split("?")[0];
+
+    if (baseUrl === "/basic/result") {
+      (0, _controllers.getHalls)(req.query.queryString).then(function (result) {
+        if (result.error) return next(result.error);
+        return res.status(200).json(result.result);
+      });
+    } else if (baseUrl === "/advance/result") {
+      (0, _controllers.getTechSurplus)(req.query.queryString).then(function (result) {
+        if (result.error) return next(result.error);
+        return res.status(200).json(result.result);
+      });
+    }
   }
 };
 

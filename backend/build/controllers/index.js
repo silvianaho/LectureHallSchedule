@@ -16,6 +16,18 @@ Object.keys(_basicController).forEach(function (key) {
   });
 });
 
+var _advanceController = require("./advanceController");
+
+Object.keys(_advanceController).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _advanceController[key];
+    }
+  });
+});
+
 var _validate = require("./validate");
 
 Object.keys(_validate).forEach(function (key) {

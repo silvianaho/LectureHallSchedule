@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getResult = exports.addLecture = exports.getLectures = exports.getPageInfo = void 0;
+exports.getHalls = exports.addLecture = exports.getLectures = exports.getPageInfo = exports.basicModel = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -22,7 +22,8 @@ var _algo = require("../algo");
 /* eslint-disable curly */
 
 /* eslint-disable nonblock-statement-body-position */
-var basicModel = new _model["default"]('lectures');
+var basicModel = new _model["default"]("lectures");
+exports.basicModel = basicModel;
 
 var getPageInfo = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
@@ -34,7 +35,7 @@ var getPageInfo = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return Promise.all([basicModel.selectDistinct('facultyid'), basicModel.selectDistinct('semesterid'), basicModel.select('COUNT (*)')]);
+            return Promise.all([basicModel.selectDistinct("facultyid"), basicModel.selectDistinct("semesterid"), basicModel.select("COUNT (*)")]);
 
           case 3:
             _yield$Promise$all = _context.sent;
@@ -54,7 +55,7 @@ var getPageInfo = /*#__PURE__*/function () {
             }
 
             return _context.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Not Found', 404),
+              error: (0, _httpErrors["default"])("Not Found", 404),
               result: null
             }));
 
@@ -68,13 +69,13 @@ var getPageInfo = /*#__PURE__*/function () {
             _context.prev = 14;
             _context.t0 = _context["catch"](0);
 
-            if (!(_context.t0.errno === 'ENOTFOUND')) {
+            if (!(_context.t0.errno === "ENOTFOUND")) {
               _context.next = 18;
               break;
             }
 
             return _context.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Database Error', 500),
+              error: (0, _httpErrors["default"])("Database Error", 500),
               result: null
             }));
 
@@ -108,7 +109,7 @@ var getLectures = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return basicModel.select('*', "".concat(queryString));
+            return basicModel.select("*", "".concat(queryString));
 
           case 3:
             data = _context2.sent;
@@ -119,7 +120,7 @@ var getLectures = /*#__PURE__*/function () {
             }
 
             return _context2.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Not Found', 404),
+              error: (0, _httpErrors["default"])("Not Found", 404),
               result: null
             }));
 
@@ -135,13 +136,13 @@ var getLectures = /*#__PURE__*/function () {
             // eslint-disable-next-line no-console
             console.log(_context2.t0);
 
-            if (!(_context2.t0.errno === 'ENOTFOUND')) {
+            if (!(_context2.t0.errno === "ENOTFOUND")) {
               _context2.next = 14;
               break;
             }
 
             return _context2.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Database Error', 500),
+              error: (0, _httpErrors["default"])("Database Error", 500),
               result: null
             }));
 
@@ -177,7 +178,7 @@ var addLecture = /*#__PURE__*/function () {
             data = reqData.data, columns = reqData.columns, values = reqData.values;
             _context3.prev = 1;
             _context3.next = 4;
-            return basicModel.insertLecture(columns, values);
+            return basicModel.insert(columns, values);
 
           case 4:
             resultData = _context3.sent;
@@ -190,7 +191,7 @@ var addLecture = /*#__PURE__*/function () {
             return _context3.abrupt("return", Promise.resolve({
               error: null,
               result: {
-                result: 'success'
+                result: "success"
               }
             }));
 
@@ -203,7 +204,7 @@ var addLecture = /*#__PURE__*/function () {
             // eslint-disable-next-line no-console
             console.log(_context3.t0); // duplicate record
 
-            if (!(_context3.t0.code === '23505')) {
+            if (!(_context3.t0.code === "23505")) {
               _context3.next = 15;
               break;
             }
@@ -214,41 +215,41 @@ var addLecture = /*#__PURE__*/function () {
             }));
 
           case 15:
-            if (!(_context3.t0.code === '42703')) {
+            if (!(_context3.t0.code === "42703")) {
               _context3.next = 17;
               break;
             }
 
             return _context3.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Missing Column', 400),
+              error: (0, _httpErrors["default"])("Missing Column", 400),
               result: null
             }));
 
           case 17:
-            if (!(_context3.t0.code === '22008')) {
+            if (!(_context3.t0.code === "22008")) {
               _context3.next = 19;
               break;
             }
 
             return _context3.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('The maximum time is 2359', 400),
+              error: (0, _httpErrors["default"])("The maximum time is 2359", 400),
               result: null
             }));
 
           case 19:
-            if (!(_context3.t0.errno === 'ENOTFOUND')) {
+            if (!(_context3.t0.errno === "ENOTFOUND")) {
               _context3.next = 21;
               break;
             }
 
             return _context3.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Database Error', 500),
+              error: (0, _httpErrors["default"])("Database Error", 500),
               result: null
             }));
 
           case 21:
             return _context3.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Internal Server Error', 500),
+              error: (0, _httpErrors["default"])("Internal Server Error", 500),
               result: null
             }));
 
@@ -267,7 +268,7 @@ var addLecture = /*#__PURE__*/function () {
 
 exports.addLecture = addLecture;
 
-var getResult = /*#__PURE__*/function () {
+var getHalls = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(queryString) {
     var data, result;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
@@ -276,7 +277,7 @@ var getResult = /*#__PURE__*/function () {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return basicModel.select('*', "".concat(queryString));
+            return basicModel.select("*", "".concat(queryString));
 
           case 3:
             data = _context4.sent;
@@ -288,7 +289,7 @@ var getResult = /*#__PURE__*/function () {
             }
 
             return _context4.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Sorry, we could not find what you asked for', 404),
+              error: (0, _httpErrors["default"])("Sorry, we could not find what you asked for", 404),
               result: null
             }));
 
@@ -302,7 +303,7 @@ var getResult = /*#__PURE__*/function () {
             _context4.prev = 10;
             _context4.t0 = _context4["catch"](0);
             return _context4.abrupt("return", Promise.resolve({
-              error: (0, _httpErrors["default"])('Internal Server Error', 500),
+              error: (0, _httpErrors["default"])("Internal Server Error", 500),
               result: null
             }));
 
@@ -314,9 +315,9 @@ var getResult = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 10]]);
   }));
 
-  return function getResult(_x3) {
+  return function getHalls(_x3) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.getResult = getResult;
+exports.getHalls = getHalls;
