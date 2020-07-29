@@ -133,7 +133,7 @@ function showEntries() {
   startId.text(start);
   endId.text(end);
 }
-
+//lecture
 function populateTable(response) {
   const parent = $("#lecture-list-table");
   parent.empty();
@@ -150,6 +150,7 @@ function populateTable(response) {
     parent.append(lectures);
   });
 }
+
 
 $(document).ready(() => {
   /* Get page information */
@@ -338,3 +339,35 @@ $(document).ready(() => {
       .fail((message) => console.log(message));
   });
 });
+/*-------------CA2 insert new data------------*/
+$(() => {
+      $("#submit").submit((event) => {
+        event.preventDefault();
+        const ID = parseFloat($("#lecture").val());
+        if (isNaN(ID)) {
+            alert("Please enter a valid lecture id!");
+            return;
+        }
+        var settings = {
+          url: "http://localhost:3000/basic/data",
+          method: "GET",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          data: basicDataQuery,
+            }
+        });
+        
+        $.ajax(settings).fail((response) => {
+
+            console.log("INSERT NEW DATA FAILED!");
+        }).done((response) => {
+            console.log(response);
+            console.log('success')
+
+            response.forEach((element, index) => {
+                //bring to data viewer
+            });
+        });
+    })
