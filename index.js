@@ -9,7 +9,9 @@ const basicDataQuery = {
 let totalPage = 0;
 let totalNoOfLectures = 0;
 
-const pageInfoUrl = "http://localhost:3000/basic/info";
+const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
+const pageInfoUrl = host + "/basic/info";
+const basicDataUrl =  host + "/basic/data"; 
 
 function getPageInfo() {
   $.get(pageInfoUrl)
@@ -167,7 +169,7 @@ $(document).ready(() => {
 
   // Get lecturer listings as soon as page loads
   var settings = {
-    url: "http://localhost:3000/basic/data",
+    url: basicDataUrl,
     method: "GET",
     timeout: 0,
     headers: {
@@ -212,7 +214,7 @@ $(document).ready(() => {
     basicDataQuery["page"] = 0;
     basicDataQuery["pageSize"] = 10;
     settings = {
-      url: "http://localhost:3000/basic/data", //backend search
+      url: basicDataUrl, //backend search
       method: "GET",
       timeout: 0,
       headers: {
@@ -349,7 +351,7 @@ $(() => {
             return;
         }
         var settings = {
-          url: "http://localhost:3000/basic/data",
+          url: basicDataUrl,
           method: "GET",
           timeout: 0,
           headers: {
