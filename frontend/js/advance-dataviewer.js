@@ -9,8 +9,10 @@ const basicDataQuery = {
   let totalPage = 0;
   let totalNoOfLectures = 0;
   
-  const pageInfoUrl = "http://localhost:3000/basic/info";
-  
+  const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
+  const pageInfoUrl = host + "/advance/info";
+  const advanceDataUrl =  host + "/advance/data"; 
+
   function getPageInfo() {
     $.get(pageInfoUrl)
       .done((result) => {
@@ -129,7 +131,7 @@ function populateTable(response) {
   
 
     var settings = {
-        url: "http://localhost:3000/basic/data",
+        url: advanceDataUrl,
         method: "GET",
         timeout: 0,
         headers: {
@@ -174,7 +176,7 @@ function populateTable(response) {
         basicDataQuery["page"] = 0;
         basicDataQuery["pageSize"] = 10;
         settings = {
-          url: "http://localhost:3000/basic/data", //backend search
+          url: advanceDataUrl, //backend search
           method: "GET",
           timeout: 0,
           headers: {
