@@ -1,0 +1,134 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+
+html, body { height: 100%; margin: 0; }
+.result-viewer-table{
+ 
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #efefef;
+  overflow: hidden;
+}
+
+.day {
+    
+  width: 18%;
+  height: 100vh;
+  float: left;
+  background-color: #fff;
+  background-image: linear-gradient(rgba(0,0,0,.08) 50%, transparent 50%);
+  background-size: 1px 20%;
+}
+
+.day.time { width: 10%; }
+
+.day_title {
+  height: 10%;
+  background-color: rgba(172, 187, 203, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 10vh;
+  
+}
+
+.hour {
+  height: 20%;
+  background-color: rgba(172, 187, 203, 0.9);
+  font-size: 12px;
+  text-align: center;
+  line-height: 20vh;
+}
+
+.class {
+  width: 15vh;
+  height: 20vh; /*1vh = 6min*/
+  line-height: 20vh;
+  background-color: rgb(187, 233, 216);
+  font-size: 2vw;
+  font-weight: 300;
+  text-align: center;
+  padding-left: 10px;
+}
+.result-viewer-table{
+
+ 
+}
+
+.class.short { width: 20vw; line-height: 20vh; } /* 45min class */
+.class.b15 { margin-right: 2.5vh; } /* after 15 min break */
+.class.b45 { margin-right: 7.5vh; } /* after 45 min break */
+.class.b90 { margin-right: 15vh; } /* after 2x45 min break */
+.class.b135 { margin-right: 22.5vh; } /* after 3x45 min break */
+
+.green { background-color: #bee3ce; }
+.turquoise { background-color: #97ded0; }
+.navy { background-color: #a1ddea; }
+.blue { background-color: #aeb7cd; }
+.grey { background-color: #d1c2ea; color: #202020; }
+.gray { background-color: #f3d0da; }
+
+
+
+.spacing { background-color: transparent; }
+
+
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  width: initial;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  margin-bottom: 10px;
+  margin-left: -75px;
+  padding: 7px 5px;
+  width: 140px;
+  background-color: rgb(224, 187, 220);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  margin-left: -7px;
+  margin-bottom: 3px;
+  width: 0;
+  border-top: 7px solid rgb(224, 187, 220);
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  bottom: 90%;
+}
+
+
+

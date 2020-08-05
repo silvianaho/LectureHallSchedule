@@ -9,7 +9,9 @@ const basicDataQuery = {
 let totalPage = 0;
 let totalNoOfLectures = 0;
 
-const pageInfoUrl = "http://localhost:3000/basic/info";
+const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
+const pageInfoUrl = host + "/basic/info";
+const basicDataUrl =  host + "/basic/data"; 
 
 function getPageInfo() {
   $.get(pageInfoUrl)
@@ -133,7 +135,7 @@ function showEntries() {
   startId.text(start);
   endId.text(end);
 }
-
+//lecture
 function populateTable(response) {
   const parent = $("#lecture-list-table");
   parent.empty();
@@ -151,6 +153,7 @@ function populateTable(response) {
   });
 }
 
+
 $(document).ready(() => {
   /* Get page information */
   getPageInfo();
@@ -166,7 +169,7 @@ $(document).ready(() => {
 
   // Get lecturer listings as soon as page loads
   var settings = {
-    url: "http://localhost:3000/basic/data",
+    url: basicDataUrl,
     method: "GET",
     timeout: 0,
     headers: {
@@ -211,7 +214,7 @@ $(document).ready(() => {
     basicDataQuery["page"] = 0;
     basicDataQuery["pageSize"] = 10;
     settings = {
-      url: "http://localhost:3000/basic/data", //backend search
+      url: basicDataUrl, //backend search
       method: "GET",
       timeout: 0,
       headers: {
@@ -338,3 +341,35 @@ $(document).ready(() => {
       .fail((message) => console.log(message));
   });
 });
+/*-------------CA2 insert new data------------*/
+$(() => {
+      $("#submit").submit((event) => {
+        event.preventDefault();
+        const ID = parseFloat($("#lecture").val());
+        if (isNaN(ID)) {
+            alert("Please enter a valid lecture id!");
+            return;
+        }
+        var settings = {
+          url: basicDataUrl,
+          method: "GET",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          data: basicDataQuery,
+            }
+        });
+        
+        $.ajax(settings).fail((response) => {
+
+            console.log("INSERT NEW DATA FAILED!");
+        }).done((response) => {
+            console.log(response);
+            console.log('success')
+
+            response.forEach((element, index) => {
+                //bring to data viewer
+            });
+        });
+    })
