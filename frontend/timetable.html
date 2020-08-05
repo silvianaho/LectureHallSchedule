@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>Hello</title>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="./css/timetablejs.css" />
+
+		<script src="./js/timetable.js"></script>
+	</head>
+	<body>
+		<div class="timetable"></div>
+	</body>
+	<script>
+		function getResult(facultyId, semesterId, dayOfWeek, callback) {
+			const host = 'https://fsp-jibaboom-2a14-teamsos.herokuapp.com';
+			fetch(
+				host +
+					'/basic/result' +
+					`?facultyId=${facultyId}&semesterId=${semesterId}&dayOfWeek=${dayOfWeek}`,
+			)
+				.then((response) => response.json())
+				.then((json) => callback(json));
+		}
+		function loadTable(data) {
+			console.log(data);
+
+			var timetable = new Timetable();
+			timetable.setScope(9, 17); // optional, only whole hours between 0 and 23
+			timetable.useTwelveHour(); //optional, displays hours in 12 hour format (1:00PM)
+			timetable.addLocations(['hall 1', 'hall 2']);
+			timetable.addEvent(
+				'lecture 1',
+				'hall 1',
+				new Date('2020/01/01 09:00:00'),
+				new Date('2020/01/01 11:00:00'),
+				{
+					onClick: function () {
+						console.log('lecture1');
+					},
+				},
+			);
+			timetable.addEvent(
+				'lecture 2',
+				'hall 2',
+				new Date('2020/01/01 13:00:11'),
+				new Date('2020/01/01 15:13:00'),
+				{
+					onClick: function () {
+						console.log('lecture2');
+					},
+				},
+			);
+			var renderer = new Timetable.Renderer(timetable);
+			renderer.draw('.timetable'); // any css selector
+		}
+		$(document).ready(() => {
+			const { facultyId, semesterId, dayOfWeek } = {
+				facultyId: 1100000000,
+				semesterId: 1110000000,
+				dayOfWeek: 4,
+			};
+			getResult(facultyId, semesterId, dayOfWeek, loadTable);
+			setTimeout(() => loadTable(), 500);
+		});
+	</script>
+</html>
