@@ -15,15 +15,26 @@ var _middleware = require("../middleware");
 
 var indexRouter = _express["default"].Router();
 
-indexRouter.get('/basic/info', _middleware.getPageInfoOnLoad);
+indexRouter.get("/basic/info", _middleware.getPageInfoOnLoad);
 /* GET basic data viewer data */
 
-indexRouter.get('/basic/data', _middleware.transformQueries);
+indexRouter.get("/basic/data", _middleware.transformQueries);
 /* POST basic lecture page. */
+// @ts-ignore
 
-indexRouter.post('/basic/insert', (0, _controllers.validate)('createLecture'), _middleware.mapMultipleValues);
+indexRouter.post("/basic/insert", (0, _controllers.validate)("createLecture"), _middleware.mapMultipleValues);
 /* GET basic result */
 
-indexRouter.get('/basic/result', _middleware.transformQueriesCompute);
+indexRouter.get("/basic/result", _middleware.transformQueriesCompute);
+/* GET advance data viewer data */
+
+indexRouter.get("/advance/data", _middleware.transformQueries);
+/* POST advance lecture page. */
+// @ts-ignore
+
+indexRouter.post("/advance/insert", (0, _controllers.validate)("createTechnician"), _middleware.mapMultipleValues);
+/* GET advance result */
+
+indexRouter.get("/advance/result", _middleware.transformQueriesCompute);
 var _default = indexRouter;
 exports["default"] = _default;

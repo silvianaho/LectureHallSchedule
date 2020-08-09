@@ -5,26 +5,46 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.validate = void 0;
 
-var _require = require('express-validator'),
+var _require = require("express-validator"),
     body = _require.body;
 
 var validate = function validate(method) {
   switch (method) {
-    case 'createLecture':
+    case "createLecture":
       {
-        return [body('data.*.lectureId', 'Invalid lectureId').exists().isInt().isLength({
+        return [body("data.*.lectureId", "Invalid lectureId").exists().isInt().isLength({
           min: 10,
           max: 10
-        }), body('data.*.semesterId', 'Invalid semesterId').exists().isInt().isLength({
+        }), body("data.*.semesterId", "Invalid semesterId").exists().isInt().isLength({
           min: 10,
           max: 10
-        }), body('data.*.facultyId', 'Invalid facultyId').exists().isInt().isLength({
+        }), body("data.*.facultyId", "Invalid facultyId").exists().isInt().isLength({
           min: 10,
           max: 10
-        }), body('data.*.dayOfWeek', 'Invalid dayOfWeek').exists().isIn([1, 2, 3, 4, 5, 6, 7]), body('data.*.startTime', 'Invalid startTime').exists().isInt().isLength({
+        }), body("data.*.dayOfWeek", "Invalid dayOfWeek").exists().isIn([1, 2, 3, 4, 5, 6, 7]), body("data.*.startTime", "Invalid startTime").exists().isInt().isLength({
           min: 4,
           max: 4
-        }), body('data.*.endTime', 'Invalid endTime').exists().isInt().isLength({
+        }), body("data.*.endTime", "Invalid endTime").exists().isInt().isLength({
+          min: 4,
+          max: 4
+        })];
+      }
+
+    case "createTechnician":
+      {
+        return [body("data.*.technicianId", "Invalid technicianId").exists().isInt().isLength({
+          min: 10,
+          max: 10
+        }), body("data.*.semesterId", "Invalid semesterId").exists().isInt().isLength({
+          min: 10,
+          max: 10
+        }), body("data.*.facultyId", "Invalid facultyId").exists().isInt().isLength({
+          min: 10,
+          max: 10
+        }), body("data.*.dayOfWeek", "Invalid dayOfWeek").exists().isIn([1, 2, 3, 4, 5, 6, 7]), body("data.*.startTime", "Invalid startTime").exists().isInt().isLength({
+          min: 4,
+          max: 4
+        }), body("data.*.endTime", "Invalid endTime").exists().isInt().isLength({
           min: 4,
           max: 4
         })];

@@ -27,6 +27,7 @@ var executeQueryArray = /*#__PURE__*/function () {
             return _context2.abrupt("return", // eslint-disable-next-line implicit-arrow-linebreak
             new Promise(function (resolve) {
               var stop = arr.length;
+              console.log(arr);
               arr.forEach( /*#__PURE__*/function () {
                 var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(q, index) {
                   return _regenerator["default"].wrap(function _callee$(_context) {
@@ -75,7 +76,7 @@ var dropTables = function dropTables() {
 exports.dropTables = dropTables;
 
 var createTables = function createTables() {
-  return executeQueryArray([_queries.createLecturesTable]);
+  return executeQueryArray([_queries.createLecturesTable, _queries.createTechniciansTable]);
 };
 
 exports.createTables = createTables;
