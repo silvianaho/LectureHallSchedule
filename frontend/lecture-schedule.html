@@ -7,6 +7,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/timetablejs.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -28,7 +29,8 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script src="js/lecture-schedule.js" type="text/javascript"></script>
+    <script src="./js/index.js"></script>
+    <!-- <script src="js/lecture-schedule.js" type="text/javascript"></script> -->
     <title>JiBaBoom</title>
   </head>
   <body>
@@ -77,7 +79,6 @@
       </nav>
       <!-- content -->
       <div class="px-3 mx-3" id="content">
-
         <!-- mobile sidebar control -->
         <div class="title-filter mt-4">
           <div class="page-title float-left">
@@ -85,7 +86,7 @@
               <span class="close-side">&#171;</span>
               <span class="open">&#187;</span>
             </h1>
-            <h2 class="mb-3 font-weight-normal">LECTURE HALLS</h2>
+            <h2 class="mb-3 font-weight-normal">LECTURE SCHEDULE</h2>
           </div>
           <!-- filter -->
           <div class="filter pt-3 float-right">
@@ -93,14 +94,14 @@
             <form class="mb-3" id="filter-form">
               <div class="form-row align-items-center">
                 <div class="col-lg-auto pb-md-1">
-                  <input
+                  <!-- <input
                     type="number"
                     name="facultyId"
                     id="faculty-id"
                     placeholder="Faculty ID"
                     class="form-control form-control-sm"
-                  />
-                  <!-- <select
+                  /> -->
+                  <select
                     name="facultyId"
                     id="faculty-id"
                     class="form-control custom-select custom-select-sm"
@@ -108,7 +109,7 @@
                     <option value="" selected disabled
                       >Filter by Faculty ID</option
                     >
-                  </select> -->
+                  </select>
                 </div>
                 <div class="col-lg-auto pb-md-1">
                   <select
@@ -140,7 +141,7 @@
                 <div class="col-lg-auto pb-md-1">
                   <button
                     type="submit"
-                    id="search-button"
+                    id="timetable-submit-button"
                     class="btn btn-primary btn-sm w-100"
                   >
                     Submit
@@ -155,11 +156,147 @@
             </form>
           </div>
         </div>
-
+        <br>
+        <div class="showing-info m-0 my-3 float-left">
+          <p class="m-0">Showing schedule for - facultyId: <span class="faculty"></span> - semesterId: <span class="semester"></span> - day: <span class="dayofweek"></span></p>
+        </div>
         <!-- Timetable -->
-        <div id="timetable"></div>
-
+        <div class="timetable"></div>
+        <div class="not-found text-center d-none">
+          <p class="display-4">There is no data with the entered value ;w;</p>
+          <p class="display-4">Please try again.</p>
+        </div>
       </div>
     </div>
   </body>
+
+  <script src="./js/timetable.js"></script>
+  <script>
+    const basicResultUrl = host + "/basic/result";
+
+    const resultQuery = {
+      facultyId: null,
+      semesterId: null,
+      dayOfWeek: 0,
+    };
+
+    function setShowInfo (resultQuery) {
+      const advanceShowFaculty = $(".faculty");
+      const advanceShowSemester = $(".semester");
+      const advanceShowDay = $(".dayofweek");
+      
+      advanceShowFaculty.text(resultQuery.facultyId);
+      advanceShowSemester.text(resultQuery.semesterId);
+      advanceShowDay.text(resultQuery.dayOfWeek);
+
+      $("#faculty-id").val(resultQuery.facultyId);
+      $("#semester-id").val(resultQuery.semesterId);
+      $("#day-of-week").val(resultQuery.dayOfWeek);
+
+    }
+
+    function getResult(resultQuery, callback) {
+      const settings = {
+        url: basicResultUrl,
+        method: "GET",
+        timeout: 0,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: resultQuery,
+      };
+
+      $.ajax(settings)
+        .done((response) => {
+          // console.log(response);
+          $(".not-found").addClass("d-none");
+          callback(response);
+        })
+        .fail((response) => {
+          $(".timetable").empty();
+          $(".not-found").html(
+            `<p class='display-4'>Getting lecture schedule failed.</p><p class='display-4'>Please check your input or refresh the page.</p>`
+          );
+          $(".not-found").removeClass("d-none");
+        });
+    }
+
+    /* 
+    calculate scope for timetable
+    @input: lectures data (json)
+    @output: {start: int, end: int} (json)
+    */
+    function calculateScope(data) {
+      let earliestTime = parseInt(data[0][0].startTime.split(":")[0]);
+      var latestTime = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        data[i].forEach((lecture) => {
+          let end = parseInt(lecture.endTime.split(":")[0]) + 1;
+          if (end > latestTime) latestTime = end;
+        });
+      }
+      if (latestTime - earliestTime < 13) {
+        if (earliestTime + 13 <= 23) {
+          return { start: earliestTime, end: earliestTime + 13 };
+        } else {
+          return { start: earliestTime, end: earliestTime + 13 - 23 };
+        }
+      }
+      return { start: earliestTime, end: latestTime };
+    }
+
+    function loadTable(data) {
+      let scope = calculateScope(data);
+      // console.log(scope);
+      var timetable = new Timetable();
+      timetable.setScope(scope.start, scope.end); // optional, only whole hours between 0 and 23
+      // timetable.useTwelveHour(); //optional, displays hours in 12 hour format (1:00PM)
+
+      let halls = [];
+      let lectureList = [];
+      for (let i = 0; i < data.length; i++) {
+        halls.push("Hall " + (i + 1));
+        timetable.addLocations([halls[i]]);
+        data[i].forEach((lecture) => {
+          timetable.addEvent(
+            lecture.lectureId,
+            halls[i],
+            new Date("2020/01/01 " + lecture.startTime),
+            new Date("2020/01/01 " + lecture.endTime)
+          );
+        });
+      }
+      var renderer = new Timetable.Renderer(timetable);
+      renderer.draw(".timetable"); // any css selector
+    }
+
+    function getInitialData () {
+      $.get(pageInfoUrl)
+        .done((result) => {
+          console.log(result);
+          resultQuery.facultyId = result.facultyid[0].facultyid;
+          resultQuery.semesterId = result.semesterid[0].semesterid;
+          resultQuery.dayOfWeek = 1;
+
+          getResult(resultQuery, loadTable);
+          setShowInfo(resultQuery);
+
+        });
+    }
+
+    $("#timetable-submit-button").on("click", (event) => {
+      event.preventDefault();
+      resultQuery.facultyId = $("#faculty-id").val();
+      resultQuery.semesterId = $("#semester-id").val();
+      resultQuery.dayOfWeek = $("#day-of-week").val();
+
+      getResult(resultQuery, loadTable);
+    });
+
+    $(document).ready(() => {
+      getInitialData();
+      // setTimeout(() => loadTable(), 500);
+    });
+  </script>
 </html>
