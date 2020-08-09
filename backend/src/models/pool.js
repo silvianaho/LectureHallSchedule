@@ -4,4 +4,10 @@ import { connectionString } from "../settings";
 
 dotenv.config();
 
-export const pool = new Pool({ connectionString });
+const config = {
+  connectionString,
+  // maximum number of clients the pool should contain
+  max: 10,
+};
+
+export const pool = new Pool(config);
