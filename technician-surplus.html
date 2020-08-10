@@ -87,7 +87,7 @@
               <span class="close-side">&#171;</span>
               <span class="open">&#187;</span>
             </h1>
-            <h2 class="mb-3 font-weight-normal">LECTURE SCHEDULE</h2>
+            <h2 class="mb-3 font-weight-normal">TECHNICIAN SCHEDULE</h2>
           </div>
           <!-- filter -->
           <div class="filter pt-3 float-right">
@@ -142,7 +142,7 @@
                 <div class="col-lg-auto pb-md-1">
                   <button
                     type="submit"
-                    id="timetable-submit-button"
+                    id="technician-schedule-submit-button"
                     class="btn btn-primary btn-sm w-100"
                   >
                     Submit
@@ -157,9 +157,13 @@
             </form>
           </div>
         </div>
-        <br>
+        <br />
         <div class="showing-info m-0 my-3 float-left">
-          <p class="m-0">Showing schedule for - facultyId: <span class="faculty"></span> - semesterId: <span class="semester"></span> - day: <span class="dayofweek"></span></p>
+          <p class="m-0">
+            Showing schedule for - facultyId: <span class="faculty"></span> -
+            semesterId: <span class="semester"></span> - day:
+            <span class="dayofweek"></span>
+          </p>
         </div>
         <!-- Timetable -->
         <div class="timetable"></div>
@@ -173,7 +177,9 @@
 
   <script src="./js/timetable.js"></script>
   <script>
-    const basicResultUrl = host + "/basic/result";
+    const advanceInfoUrl = host + "/advance/info";
+    const advanceDataUrl = host + "/advance/data";
+    const advanceResultUrl = host + "/advance/result";
 
     const resultQuery = {
       facultyId: null,
@@ -181,24 +187,25 @@
       dayOfWeek: 0,
     };
 
-    function setShowInfo (resultQuery) {
-      const advanceShowFaculty = $(".faculty");
-      const advanceShowSemester = $(".semester");
-      const advanceShowDay = $(".dayofweek");
-      
-      advanceShowFaculty.text(resultQuery.facultyId);
-      advanceShowSemester.text(resultQuery.semesterId);
-      advanceShowDay.text(resultQuery.dayOfWeek);
+    function setShowInfo(resultQuery) {
+      const resultShowFaculty = $(".faculty");
+      const resultShowSemester = $(".semester");
+      const resultShowDay = $(".dayofweek");
+
+      resultShowFaculty.text(resultQuery.facultyId);
+      resultShowSemester.text(resultQuery.semesterId);
+      resultShowDay.text(resultQuery.dayOfWeek);
 
       $("#faculty-id").val(resultQuery.facultyId);
       $("#semester-id").val(resultQuery.semesterId);
       $("#day-of-week").val(resultQuery.dayOfWeek);
-
     }
+
+    // function getTechnicianData()
 
     function getResult(resultQuery, callback) {
       const settings = {
-        url: basicResultUrl,
+        url: advanceDataUrl,
         method: "GET",
         timeout: 0,
         headers: {
@@ -228,15 +235,15 @@
     @output: {start: int, end: int} (json)
     */
     function calculateScope(data) {
-      let earliestTime = parseInt(data[0][0].startTime.split(":")[0]);
+      let earliestTime = parseInt(data[0].starttime.split(":")[0]);
       var latestTime = 0;
 
       for (let i = 0; i < data.length; i++) {
-        data[i].forEach((lecture) => {
-          let end = parseInt(lecture.endTime.split(":")[0]) + 1;
-          if (end > latestTime) latestTime = end;
-        });
+        let end = parseInt(data[i].endtime.split(":")[0]) + 1;
+        if (end > latestTime) latestTime = end;
       }
+
+      console.log(earliestTime, latestTime);
       if (latestTime - earliestTime < 13) {
         if (earliestTime + 13 <= 23) {
           return { start: earliestTime, end: earliestTime + 13 };
@@ -249,7 +256,7 @@
 
     function loadTable(data) {
       let scope = calculateScope(data);
-      // console.log(scope);
+      console.log(scope);
       var timetable = new Timetable();
       timetable.setScope(scope.start, scope.end); // optional, only whole hours between 0 and 23
       // timetable.useTwelveHour(); //optional, displays hours in 12 hour format (1:00PM)
@@ -259,37 +266,32 @@
       for (let i = 0; i < data.length; i++) {
         halls.push("Hall " + (i + 1));
         timetable.addLocations([halls[i]]);
-        data[i].forEach((lecture) => {
-          timetable.addEvent(
-            lecture.lectureId,
-            halls[i],
-            new Date("2020/01/01 " + lecture.startTime),
-            new Date("2020/01/01 " + lecture.endTime),
-            {
-              class: 'lecture'
-            }
-          );
-        });
+        timetable.addEvent(
+          data[i].technicianId,
+          halls[i],
+          new Date("2020/01/01 " + data[i].starttime),
+          new Date("2020/01/01 " + data[i].endtime),
+          {
+            class: "lecture",
+          }
+        );
       }
       var renderer = new Timetable.Renderer(timetable);
       renderer.draw(".timetable"); // any css selector
     }
 
-    function getInitialData () {
-      $.get(pageInfoUrl)
-        .done((result) => {
-          console.log(result);
-          resultQuery.facultyId = result.facultyid[0].facultyid;
-          resultQuery.semesterId = result.semesterid[0].semesterid;
-          resultQuery.dayOfWeek = 1;
+    function getInitialData() {
+      $.get(pageInfoUrl).done((result) => {
+        resultQuery.facultyId = result.facultyid[0].facultyid;
+        resultQuery.semesterId = result.semesterid[0].semesterid;
+        resultQuery.dayOfWeek = 1;
 
-          getResult(resultQuery, loadTable);
-          setShowInfo(resultQuery);
-
-        });
+        getResult(resultQuery, loadTable);
+        setShowInfo(resultQuery);
+      });
     }
 
-    $("#timetable-submit-button").on("click", (event) => {
+    $("#technician-schedule-submit-button").on("click", (event) => {
       event.preventDefault();
       resultQuery.facultyId = $("#faculty-id").val();
       resultQuery.semesterId = $("#semester-id").val();
