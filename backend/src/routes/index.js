@@ -11,7 +11,7 @@ import {
 const indexRouter = express.Router();
 
 indexRouter.get("/", (req, res) => res.json({
-  message: "Welcome to JiBaBoom - <TEAMNAME>",
+  message: "Welcome to JiBaBoom - TeamSOS",
   availableEndpoints: [
     "POST /basic/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }",
     "POST /advance/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }",

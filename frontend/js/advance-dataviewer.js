@@ -1,4 +1,4 @@
-const basicDataQuery = {
+const dataQuery = {
   facultyId: null,
   semesterId: null,
   dayOfWeek: null,
@@ -6,15 +6,15 @@ const basicDataQuery = {
   pageSize: 10,
 };
 
-let totalPage = 0;
-let totalNoOfLectures = 0;
+let totalTechnicianPage = 0;
+let totalNoOfTechnicians = 0;
 
 const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
-const pageInfoUrl = host + "/advance/info";
-const advanceDataUrl = host + "/advance/data";
+const advancepageInfoUrl = host + "/advance/info";
+const technicianDataUrl = host + "/advance/data";
 
 function getPageInfo() {
-  $.get(pageInfoUrl)
+  $.get(advancepageInfoUrl)
     .done((result) => {
       const faculty = $("#faculty-id");
       const semester = $("#semester-id");
@@ -36,51 +36,51 @@ function getPageInfo() {
       });
       // totalCount
       totalCount.append(result.totalCount);
-      totalNoOfLectures = result.totalCount;
+      totalNoOfTechnicians = result.totalCount;
 
       showEntries();
 
       // paginations
-      totalPage = Math.ceil(
-        parseInt(result.totalCount) / basicDataQuery.pageSize
+      totalTechnicianPage = Math.ceil(
+        parseInt(result.totalCount) / dataQuery.pageSize
       );
     })
     .fail((message) => console.log(message));
 }
 
-function disablePaginationButton() {
+function disableButton(button) {
+  $(button).attr("disabled", true);
+  $(button).parent().addClass("disabled");
+}
 
+function enableButton(button) {
+  $(button).attr("disabled", false);
+  $(button).parent().removeClass("disabled");
+}
 
-  if (basicDataQuery.page === 0) {
-    $("#basic-data-first-page").attr("disabled", true);
-    $("#basic-data-first-page").parent().addClass("disabled");
-    $("#basic-data-previous-page").attr("disabled", true);
-    $("#basic-data-previous-page").parent().addClass("disabled");
-
-    $("#basic-data-last-page").attr("disabled", false);
-    $("#basic-data-last-page").parent().removeClass("disabled");
-    $("#basic-data-next-page").attr("disabled", false);
-    $("#basic-data-next-page").parent().removeClass("disabled");
-  } else if (basicDataQuery.page === totalPage - 1) {
-    $("#basic-data-first-page").attr("disabled", false);
-    $("#basic-data-first-page").parent().removeClass("disabled");
-    $("#basic-data-previous-page").attr("disabled", false);
-    $("#basic-data-previous-page").parent().removeClass("disabled");
-
-    $("#basic-data-last-page").attr("disabled", true);
-    $("#basic-data-last-page").parent().addClass("disabled");
-    $("#basic-data-next-page").attr("disabled", true);
-    $("#basic-data-next-page").parent().addClass("disabled");
+function paginationButtonControl() {
+  console.log(dataQuery.page);
+  console.log(totalTechnicianPage);
+  if (dataQuery.page === 0 && totalTechnicianPage - dataQuery.page != 0 ) {
+    disableButton("#basic-data-first-page");
+    disableButton("#basic-data-previous-page");
+    enableButton("#basic-data-last-page");
+    enableButton("#basic-data-next-page");
+  } else if (dataQuery.page === totalTechnicianPage - 1) {
+    enableButton("#basic-data-first-page");
+    enableButton("#basic-data-previous-page");
+    disableButton("#basic-data-last-page");
+    disableButton("#basic-data-next-page");
+  } else if (dataQuery.page === totalTechnicianPage){
+    disableButton("#basic-data-first-page");
+    disableButton("#basic-data-previous-page");
+    disableButton("#basic-data-last-page");
+    disableButton("#basic-data-next-page");
   } else {
-    $("#basic-data-first-page").attr("disabled", false);
-    $("#basic-data-first-page").parent().removeClass("disabled");
-    $("#basic-data-previous-page").attr("disabled", false);
-    $("#basic-data-previous-page").parent().removeClass("disabled");
-
-    $("#basic-data-last-page").attr("disabled", false);
-    $("#basic-data-last-page").parent().removeClass("disabled");
-    $("#basic-data-next-page").attr("disabled", false);
-    $("#basic-data-next-page").parent().removeClass("disabled");
+    enableButton("#basic-data-first-page");
+    enableButton("#basic-data-previous-page");
+    enableButton("#basic-data-last-page");
+    enableButton("#basic-data-next-page");
   }
   showEntries();
 }
@@ -89,23 +89,37 @@ function showEntries() {
   let startId = $("#start-id");
   let endId = $("#end-id");
 
-  let start = basicDataQuery["page"] * basicDataQuery["pageSize"] + 1;
+  let start = dataQuery["page"] * dataQuery["pageSize"] + 1;
   // @ts-ignore
-  let end =
-    parseInt(basicDataQuery["page"] * basicDataQuery["pageSize"]) +
-    parseInt(basicDataQuery["pageSize"]);
-  end > totalNoOfLectures ? (end = totalNoOfLectures) : (end = end);
+  let end = dataQuery["page"] * dataQuery["pageSize"] + dataQuery["pageSize"];
+  // console.log(start, end)
+  // console.log(dataQuery["page"], dataQuery["pageSize"]);
+  end > totalNoOfTechnicians ? (end = totalNoOfTechnicians) : (end = end);
   startId.text(start);
   endId.text(end);
 }
-//Technician
+
+// Technician
 function populateTable(response) {
   const parent = $("#technician-list-table");
   parent.empty();
   $("#page-size").attr("value", response.length);
+  console.log("resp" + response.length);
+  console.log("pagesize" + dataQuery["pageSize"]);
+  if (response.length < dataQuery["pageSize"]) {
+    dataQuery["pageSize"] = response.length;
+    $("#total-count").text(response.length);
+    totalTechnicianPage = 0;
+  }
+  else {
+    totalTechnicianPage = 0;
+  }
+
+  console.log(response);
+  console.log(dataQuery);
   response.forEach((element) => {
     const technicians = `<tr>
-          <th scope="row">${element.technicanid}</th>
+          <th scope="row">${element.technicianid}</th>
           <td>${element.facultyid}</td>
           <td>${element.semesterid}</td>
           <td>${element.dayofweek}</td>
@@ -116,10 +130,34 @@ function populateTable(response) {
   });
 }
 
-$(document).ready(() => {
-  /* Get page information */
-  getPageInfo();
+function getTechnicians(dataQuery) {
+  var settings = {
+    url: technicianDataUrl,
+    method: "GET",
+    timeout: 0,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    data: dataQuery,
+  };
 
+  $.ajax(settings)
+    .fail((response) => {
+      $("#technician-list-table").empty();
+      $(".pagination").empty();
+      $(".not-found").html(
+        `<p class='display-4'>Getting technician listings failed ;w;</p><p class='display-4'>Please refresh the page or <a class="text-primary" href="mailto:jibaboom@sp.edu.sg">report</a> this issue</p>`
+      );
+      $(".not-found").removeClass("d-none");
+    })
+    .done((response) => {
+      populateTable(response);
+      showEntries();
+      paginationButtonControl();
+    });
+}
+
+$(document).ready(() => {
   /* Collapse sidebar */
   $("#sidebar-collapse").on("click", function () {
     $("#sidebar").toggleClass("active");
@@ -129,93 +167,21 @@ $(document).ready(() => {
     $("#sidebar").toggleClass("active");
   });
 
+  /* Get page information */
+  getPageInfo();
 
-  var settings = {
-    url: advanceDataUrl,
-    method: "GET",
-    timeout: 0,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    data: basicDataQuery,
-  };
-
-  $.ajax(settings)
-    .fail((response) => {
-      $("#technician-list-table").empty();
-      $(".pagination").empty();
-      $(".not-found").html(
-        `<p class='display-4'>Getting Technian listings failed ;w;</p><p class='display-4'>Please refresh the page or <a class="text-primary" href="mailto:jibaboom@sp.edu.sg">report</a> this issue</p>`
-      );
-      $(".not-found").removeClass("d-none");
-    })
-    .done((response) => {
-      const parent = $("#technician-list-table");
-      parent.empty();
-      $("#page-size").attr("value", response.length);
-      response.forEach((element) => {
-        const technicians = `<tr>
-                <th scope="row">${element.technicianid}</th>
-                <td>${element.facultyid}</td>
-                <td>${element.semesterid}</td>
-                <td>${element.dayofweek}</td>
-                <td>${element.starttime}</td>
-                <td>${element.endtime}</td>
-              </tr>"`;
-        parent.append(technicians);
-      });
-      disablePaginationButton();
-    });
+  getTechnicians(dataQuery);
 
   // Search for items on button click
   $("#search-button").on("click", (event) => {
     event.preventDefault();
-    basicDataQuery.facultyId = $("#faculty-id").val();
-    basicDataQuery.semesterId = $("#semester-id").val();
-    basicDataQuery.dayOfWeek = $("#day-of-week").val();
-    basicDataQuery["page"] = 0;
-    basicDataQuery["pageSize"] = 10;
-    settings = {
-      url: advanceDataUrl, //backend search
-      method: "GET",
-      timeout: 0,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      data: basicDataQuery,
-    };
-    $.ajax(settings)
-      .fail((response) => {
-        $("#technicians-list-table").empty();
-        $(".not-found").removeClass("d-none");
-        $("#page-size-filter").addClass("d-none");
-        $("#showing-entries").addClass("d-none");
-        $("#page-size").attr("value", 0);
-      })
-      .done((response) => {
-        $(".not-found").addClass("d-none");
-        $("#page-size-filter").removeClass("d-none");
-        $("#showing-entries").removeClass("d-none");
-        const parent = $("#lecture-list-table");
-        parent.empty();
-        $(".pagination").empty();
+    dataQuery.facultyId = $("#faculty-id").val();
+    dataQuery.semesterId = $("#semester-id").val();
+    dataQuery.dayOfWeek = $("#day-of-week").val();
+    dataQuery["page"] = 0;
+    dataQuery["pageSize"] = 10;
 
-        response.forEach((element) => {
-          const technicians = `<tr>
-              <th scope="row"> ${element.technicianid} </th>
-              <td> ${element.facultyid} </td>
-              <td> ${element.semesterid} </td>
-              <td> ${element.dayofweek} </td>
-              <td>${element.starttime}</td>
-              <td>${element.endtime}</td>
-              </tr>"`;
-          parent.append(technicians);
-          basicDataQuery.pageSize = response.length;
-          totalNoOfTechnicians = response.length;
-        });
-        showEntries();
-        $("#page-size").attr("value", response.length);
-      });
+    getTechnicians(dataQuery);
   });
 
   $("#clear-button").on("click", (event) => {
@@ -237,6 +203,8 @@ $(document).ready(() => {
               </tr>"`;
           parent.append(technicians);
         });
+        getPageInfo();
       });
   });
+
 })

@@ -98,7 +98,7 @@ export const getTechSurplus = async (queryString) => {
     const result = overlappingInterval(lectureData.rows, technicianData.rows);
     // console.log(result);
     if (result.length === 0)
-      createErrorResponse("Sorry, we could not find what you asked for", 404)
+      createErrorResponse("Sorry, we could not find what you asked for", 404);
     return { error: null, result };
   } catch (err) {
     createErrorResponse("Internal Server Error", 500);
