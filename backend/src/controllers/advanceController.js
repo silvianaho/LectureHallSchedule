@@ -14,6 +14,37 @@ export function createErrorResponse(message, status) {
   };
 }
 
+export const getTechnicianFilterInfo = async () => {
+  try {
+    const [facultyid, semesterid, totalCount] = await Promise.all([
+      advanceModel.selectDistinct("facultyid"),
+      advanceModel.selectDistinct("semesterid"),
+      advanceModel.select("COUNT (*)"),
+    ]);
+    const data = {
+      facultyid: facultyid.rows,
+      semesterid: semesterid.rows,
+      totalCount: totalCount.rows[0].count,
+    };
+    if (data.totalCount === 0) {
+      return Promise.resolve({
+        error: createError("Not Found", 404),
+        result: null,
+      });
+    }
+    return Promise.resolve({ error: null, result: data });
+  } catch (err) {
+    if (err.errno === "ENOTFOUND")
+      return Promise.resolve({
+        error: createError("Database Error", 500),
+        result: null,
+      });
+    return Promise.resolve({
+      error: createError(JSON.stringify(err), 500),
+      result: null,
+    });
+  }
+};
 
 export const getTechnicians = async (queryString) => {
   console.log("meow, this is getTechnicians function");

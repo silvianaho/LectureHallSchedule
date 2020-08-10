@@ -1,0 +1,17 @@
+.timetable .time-entry.lecture {
+    background-color: #ec6a5eb6;
+    border: 1px solid #e32c1bb6
+}
+
+.timetable .time-entry.lecture:hover {
+    background-color: #e74030b6
+}
+
+.timetable .time-entry.technician {
+    background-color: #c490f5b6;
+    border: 1px solid #6a16b6
+}
+
+.timetable .time-entry.technician:hover {
+    background-color: #ae67f0b6
+}

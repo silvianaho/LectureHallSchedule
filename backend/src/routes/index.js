@@ -5,9 +5,20 @@ import {
   transformQueries,
   transformQueriesCompute,
   getPageInfoOnLoad,
+  getTechnicianFilterInfoOnLoad
 } from "../middleware";
 
 const indexRouter = express.Router();
+
+indexRouter.get("/", (req, res) => res.json({
+  message: "Welcome to JiBaBoom - <TEAMNAME>",
+  availableEndpoints: [
+    "POST /basic/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }",
+    "POST /advance/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }",
+    "GET /basic/result?para1=value1&para2=value2",
+    "GET /advance/result?para1=value1&para2=value2",
+  ]
+}));
 
 indexRouter.get("/basic/info", getPageInfoOnLoad);
 
@@ -20,6 +31,9 @@ indexRouter.post("/basic/insert", validate("createLecture"), mapMultipleValues);
 
 /* GET basic result */
 indexRouter.get("/basic/result", transformQueriesCompute);
+
+/* get filter info */
+indexRouter.get("/advance/info", getTechnicianFilterInfoOnLoad);
 
 /* GET advance data viewer data */
 indexRouter.get("/advance/data", transformQueries);
