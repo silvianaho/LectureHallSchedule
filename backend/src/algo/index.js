@@ -1,1 +1,2 @@
-export * from './intervalScheduling';
+export * from "./intervalScheduling";
+export * from "./overlappingInterval";

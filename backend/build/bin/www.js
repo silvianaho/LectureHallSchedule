@@ -36,9 +36,9 @@ var normalizePort = function normalizePort(val) {
  */
 
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || "3000");
 
-_app["default"].set('port', port);
+_app["default"].set("port", port);
 /**
  * Create HTTP server.
  */
@@ -51,20 +51,20 @@ var server = _http["default"].createServer(_app["default"]);
 
 
 var onError = function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  var bind = typeof port === 'string' ? "Pipe ".concat(port) : "Port ".concat(port); // handle specific listen errors with friendly messages
+  var bind = typeof port === "string" ? "Pipe ".concat(port) : "Port ".concat(port); // handle specific listen errors with friendly messages
 
   switch (error.code) {
-    case 'EACCES':
+    case "EACCES":
       // eslint-disable-next-line no-console
       console.error("".concat(bind, " requires elevated privileges"));
       process.exit(1);
       break;
 
-    case 'EADDRINUSE':
+    case "EADDRINUSE":
       // eslint-disable-next-line no-console
       console.error("".concat(bind, " is already in use"));
       process.exit(1);
@@ -81,7 +81,7 @@ var onError = function onError(error) {
 
 var onListening = function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string' ? "pipe ".concat(addr) : "port ".concat(addr.port);
+  var bind = typeof addr === "string" ? "pipe ".concat(addr) : "port ".concat(addr.port);
   (0, _debug["default"])("Listening on ".concat(bind));
 };
 /**
@@ -90,5 +90,5 @@ var onListening = function onListening() {
 
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);

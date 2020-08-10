@@ -22,7 +22,7 @@ var Model = /*#__PURE__*/function () {
     (0, _classCallCheck2["default"])(this, Model);
     this.pool = _pool.pool;
     this.table = table;
-    this.pool.on('error', function (err, client) {
+    this.pool.on("error", function (err, client) {
       return "Error, ".concat(err, ", on idle client ").concat(client);
     });
   }
@@ -56,17 +56,20 @@ var Model = /*#__PURE__*/function () {
   }, {
     key: "select",
     value: function () {
-      var _select = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(columns, clause) {
-        var query;
+      var _select = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(columns) {
+        var clause,
+            query,
+            _args2 = arguments;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                clause = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : "";
                 query = "SELECT ".concat(columns, " FROM ").concat(this.table, " ");
                 if (clause) query += clause;
                 return _context2.abrupt("return", this.pool.query(query));
 
-              case 3:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -74,22 +77,22 @@ var Model = /*#__PURE__*/function () {
         }, _callee2, this);
       }));
 
-      function select(_x2, _x3) {
+      function select(_x2) {
         return _select.apply(this, arguments);
       }
 
       return select;
     }()
   }, {
-    key: "insertLecture",
+    key: "insert",
     value: function () {
-      var _insertLecture = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(columns, values) {
+      var _insert = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(columns, values) {
         var query;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                query = "\n    INSERT INTO ".concat(this.table, " (").concat(columns, ")\n    VALUES ").concat(values, "\n    RETURNING ").concat(columns, "\n    ");
+                query = "\n    INSERT INTO ".concat(this.table, " (").concat(columns, ")\n    VALUES ").concat(values, "\n    ");
                 return _context3.abrupt("return", this.pool.query(query));
 
               case 2:
@@ -100,11 +103,11 @@ var Model = /*#__PURE__*/function () {
         }, _callee3, this);
       }));
 
-      function insertLecture(_x4, _x5) {
-        return _insertLecture.apply(this, arguments);
+      function insert(_x3, _x4) {
+        return _insert.apply(this, arguments);
       }
 
-      return insertLecture;
+      return insert;
     }()
   }]);
   return Model;

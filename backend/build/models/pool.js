@@ -15,7 +15,10 @@ var _settings = require("../settings");
 
 _dotenv["default"].config();
 
-var pool = new _pg.Pool({
-  connectionString: _settings.connectionString
-});
+var config = {
+  connectionString: _settings.connectionString,
+  // maximum number of clients the pool should contain
+  max: 10
+};
+var pool = new _pg.Pool(config);
 exports.pool = pool;

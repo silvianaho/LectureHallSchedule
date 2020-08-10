@@ -1,6 +1,18 @@
 GET http://localhost:3000/basic/result HTTP/1.1
 Content-Type: application/json
 
-### 404
-GET http://localhost:3000/basic/result?dayOfWeek=7 HTTP/1.1
+###
+GET http://localhost:3000/basic/result?dayOfWeek=1 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/basic/result?semesterId=1110000000&facultyId=1100000000&dayOfWeek=4 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/advance/result?dayOfWeek=1 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/advance/result?semesterId=1110000000&facultyId=1100000000&dayOfWeek=4 HTTP/1.1
 Content-Type: application/json

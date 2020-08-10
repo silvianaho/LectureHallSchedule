@@ -25,13 +25,16 @@ var transformQueries = function transformQueries(req, res, next) {
         pageSize = _req$query2.pageSize; // console.log(lectureId, facultyId, semesterId, dayOfWeek, page, pageSize);
     // eslint-disable-next-line no-console
 
-    var whereClause = '';
-    var limitOffsetClause = '';
-    if (!facultyId && !semesterId && !dayOfWeek) whereClause = '';else {
-      whereClause = 'WHERE ';
-      if (facultyId) whereClause += "facultyId = ".concat(facultyId);
-      if (semesterId) whereClause += facultyId ? " AND semesterId = ".concat(semesterId) : "semesterId = ".concat(semesterId);
-      if (dayOfWeek) whereClause += facultyId || semesterId ? " AND dayOfWeek = ".concat(dayOfWeek) : "dayOfWeek = ".concat(dayOfWeek);
+    var whereClause = "";
+    var limitOffsetClause = "";
+
+    if (facultyId || semesterId || dayOfWeek) {
+      whereClause = "WHERE ";
+      var whereClauseConditions = [];
+      if (facultyId) whereClauseConditions.push("facultyId = ".concat(facultyId));
+      if (semesterId) whereClauseConditions.push("semesterId = ".concat(semesterId));
+      if (dayOfWeek) whereClauseConditions.push("dayOfWeek = ".concat(dayOfWeek));
+      whereClause += whereClauseConditions.join(" AND ");
     }
 
     if (!page || !pageSize) {
@@ -40,12 +43,21 @@ var transformQueries = function transformQueries(req, res, next) {
     }
 
     limitOffsetClause = "LIMIT ".concat(pageSize, " OFFSET ").concat(page * pageSize);
-    var queryString = "".concat(whereClause).concat(limitOffsetClause);
+    var queryString = "".concat(whereClause, " ").concat(limitOffsetClause);
     req.query.queryString = queryString;
-    (0, _controllers.getLectures)(req.query.queryString).then(function (result) {
-      if (result.error) return next(result.error);
-      return res.status(200).json(result.result);
-    });
+    var baseUrl = req.url.split("?")[0];
+
+    if (baseUrl === "/basic/data") {
+      (0, _controllers.getLectures)(req.query.queryString).then(function (result) {
+        if (result.error) return next(result.error);
+        return res.status(200).json(result.result);
+      });
+    } else if (baseUrl === "/advance/data") {
+      (0, _controllers.getTechnicians)(req.query.queryString).then(function (result) {
+        if (result.error) return next(result.error);
+        return res.status(200).json(result.result);
+      });
+    }
   }
 };
 
