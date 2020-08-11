@@ -6,7 +6,7 @@ This document should help you explain how your user interfaces are designed. You
 
 Advance result viewer Wireframe
 
-![Wireframe](assets/advance-result-viewer-new.png)
+![Wireframe](assets/advance-result-viewer-new.PNG)
 
 ## Justifications
 
