@@ -260,4 +260,8 @@ var Timetable = function () {
 					t(E), s(E), n(E), r(E), syncscroll.reset();
 				},
 			});
+<<<<<<< HEAD
 	})();
+=======
+	})();
+>>>>>>> 341d69f4e604d064bed6ce7d3a864e9823a4b7b6

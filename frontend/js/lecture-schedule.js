@@ -47,23 +47,6 @@ TimeTable.Renderer = function (tt) {
   this.timetable = tt;
 }
 
-TimeTable.Renderer.prototype = {
-  draw: function (selector) {
-    var timetable = this.timetable;
-
-    function emptyNode(selector) {
-      selector.empty();
-    }
-
-    function appendHalls () {
-
-    }
-
-    function 
-
-  }
-}
-
 var tt = new TimeTable();
 
 function addLectureData(lectures) {

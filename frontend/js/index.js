@@ -10,6 +10,7 @@ let totalPage = 0;
 let totalNoOfLectures = 0;
 
 const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
+// const host = "http://localhost:3000";
 const pageInfoUrl = host + "/basic/info";
 const basicDataUrl =  host + "/basic/data"; 
 
@@ -27,6 +28,7 @@ function getPageInfo() {
         `;
         faculty.append(facultyid);
       });
+      
       // semester
       result.semesterid.forEach((element) => {
         const semesterid = `
@@ -342,7 +344,7 @@ $(document).ready(() => {
   });
 });
 /*-------------CA2 insert new data------------*/
-$(() => {
+/* $(() => {
       $("#submit").submit((event) => {
         event.preventDefault();
         const ID = parseFloat($("#lecture").val());
@@ -350,7 +352,7 @@ $(() => {
             alert("Please enter a valid lecture id!");
             return;
         }
-        var settings = {
+        const settings = {
           url: basicDataUrl,
           method: "GET",
           timeout: 0,
@@ -372,4 +374,4 @@ $(() => {
                 //bring to data viewer
             });
         });
-    })
+    }) */
