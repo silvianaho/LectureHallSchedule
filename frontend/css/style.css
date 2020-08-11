@@ -46,9 +46,7 @@ p {
     DEMO STYLE
 */
 
-body {
-    background: #fafafa;
-}
+
 
 .list-unstyled>p {
     font-size: 0.8em;
@@ -320,3 +318,92 @@ a {
     }
     
 }
+
+
+  
+  @media (prefers-color-scheme: dark) {
+    
+    #sidebar{
+        background:#404040
+    }
+    .nav-item a span{
+        color:rgb(214, 210, 210);
+    }
+    h3{
+        color:rgb(214, 210, 210);
+    }
+    #sidebar ul li a i {
+        color:rgb(214, 210, 210);
+    }
+    body{
+        background-color: #404040;
+    }
+    .table td{
+        
+        color: #cbcbcb;
+    }
+    .table th{
+        
+        color: #cbcbcb;
+    }
+    .close-side{
+        color:rgb(214, 210, 210);
+    }
+    .wrapper{
+        background-color: #5b5b5b;
+    }
+    .page-title{
+        color:white;
+    }
+    h6{
+        color:white;    
+    }
+    small{
+        color:white;
+    }
+    span{
+        color:white;
+    }
+    #sidebar .sidebar-header{
+        color:rgb(214, 210, 210);
+    }
+    button#clear-button.btn.btn-danger.btn-sm.w-100{
+        background-color: #181818;
+        border-color: #181818;
+    }
+    button#search-button.btn.btn-primary.btn-sm.w-100{
+        background-color: #313131;
+        border-color: #313131;
+    }
+    button#timetable-submit-button.btn.btn-primary.btn-sm.w-100{
+        background-color: #313131;
+        border-color: #313131;
+    }
+    button#technician-schedule-submit-button.btn.btn-primary.btn-sm.w-100{
+        background-color: #313131;
+        border-color: #313131;
+    }
+    button#basic-data-last-page.page-link{
+        background-color:gray
+    }
+    button#basic-data-next-page.page-link{
+        background-color:gray
+    }
+    button#basic-data-previous-page.page-link{
+        background-color:gray
+    }
+    button#basic-data-first-page.page-link{
+        background-color:gray
+    }
+    li.page-item.disabled{
+        color:black
+    }
+    p.m-0{
+        color:white
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    #sidebar{
+        background:#c5cae3
+    }
+  }
