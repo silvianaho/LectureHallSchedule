@@ -9,8 +9,8 @@ const basicDataQuery = {
 let totalPage = 0;
 let totalNoOfLectures = 0;
 
-const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
-// const host = "http://localhost:3000";
+// const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
+const host = "http://localhost:3000";
 const pageInfoUrl = host + "/basic/info";
 const basicDataUrl =  host + "/basic/data"; 
 
