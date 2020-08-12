@@ -7,7 +7,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/timetablejs.css" />
+    <link rel="stylesheet" href="scss/plugin.css" />
     <link rel="stylesheet" href="css/timetable-custom.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
@@ -227,13 +227,22 @@
     @input: lectures data (json)
     @output: {start: int, end: int} (json)
     */
+    function convertTime(time) {
+      let firstDigit = String(time).substr(0,1)
+      let newtime = String(time)
+      if (firstDigit != 1) {
+        newtime = "0" + newtime;
+      }
+      return newtime.substr(0,2) + ":" + newtime.substr(2,2) + ":00";
+    }
+
     function calculateScope(data) {
-      let earliestTime = parseInt(data[0][0].startTime.split(":")[0]);
+      let earliestTime = parseInt(convertTime(data[0][0].startTime).split(":")[0]);
       var latestTime = 0;
 
       for (let i = 0; i < data.length; i++) {
         data[i].forEach((lecture) => {
-          let end = parseInt(lecture.endTime.split(":")[0]) + 1;
+          let end = parseInt(convertTime(lecture.endTime).split(":")[0]) + 1;
           if (end > latestTime) latestTime = end;
         });
       }
@@ -253,7 +262,6 @@
       var timetable = new Timetable();
       timetable.setScope(scope.start, scope.end); // optional, only whole hours between 0 and 23
       // timetable.useTwelveHour(); //optional, displays hours in 12 hour format (1:00PM)
-
       let halls = [];
       let lectureList = [];
       for (let i = 0; i < data.length; i++) {
@@ -263,8 +271,8 @@
           timetable.addEvent(
             lecture.lectureId,
             halls[i],
-            new Date("2020/01/01 " + lecture.startTime),
-            new Date("2020/01/01 " + lecture.endTime),
+            new Date("2020/01/01 " + convertTime(lecture.startTime)),
+            new Date("2020/01/01 " + convertTime(lecture.endTime)),
             {
               class: 'lecture'
             }
@@ -278,7 +286,6 @@
     function getInitialData () {
       $.get(pageInfoUrl)
         .done((result) => {
-          console.log(result);
           resultQuery.facultyId = result.facultyid[0].facultyid;
           resultQuery.semesterId = result.semesterid[0].semesterid;
           resultQuery.dayOfWeek = 1;
