@@ -1,3 +1,9 @@
+function convertTimeToInt(time) {
+  const hour = time.substring(0, 2);
+  const minute = time.substring(3, 5);
+  return parseInt(hour + minute, 10);
+}
+
 export const intervalScheduling = (lectures) => {
   const halls = [];
   // keep track of the earliest end time
@@ -7,20 +13,20 @@ export const intervalScheduling = (lectures) => {
   for (let i = 0; i < lectures.length; i++) {
     const lecture = {
       lectureId: lectures[i].lectureid,
-      startTime: lectures[i].starttime,
-      endTime: lectures[i].endtime,
+      startTime: convertTimeToInt(lectures[i].starttime),
+      endTime: convertTimeToInt(lectures[i].endtime),
     };
-    const start = parseInt(lecture.startTime, 10);
+    const start = lecture.startTime;
     if (earliestEndTime[0] !== undefined && start >= earliestEndTime[0].time) {
       halls[earliestEndTime[0].hallNo].push(lecture);
       earliestEndTime[0] = {
-        time: parseInt(lecture.endTime, 10),
+        time: lecture.endTime,
         hallNo: earliestEndTime[0].hallNo,
       };
     } else {
       halls.push([lecture]);
       earliestEndTime.push({
-        time: parseInt(lecture.endTime, 10),
+        time: lecture.endTime,
         hallNo: earliestEndTime.length,
       });
     }
