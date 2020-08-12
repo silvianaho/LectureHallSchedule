@@ -17,7 +17,7 @@ var indexRouter = _express["default"].Router();
 
 indexRouter.get("/", function (req, res) {
   return res.json({
-    message: "Welcome to JiBaBoom - <TEAMNAME>",
+    message: "Welcome to JiBaBoom - TeamSOS",
     availableEndpoints: ["POST /basic/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }", "POST /advance/insert { \"data\": [ {key1: value1, key2: value2, ...} ] }", "GET /basic/result?para1=value1&para2=value2", "GET /advance/result?para1=value1&para2=value2"]
   });
 });
