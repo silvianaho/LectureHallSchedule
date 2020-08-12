@@ -203,7 +203,10 @@ i, span {
 
 #sidebar ul li a:hover {
     color: #7386D5;
-    background: rgb(221, 221, 221);
+    background: #7584be;
+}
+#sidebar ul li a:hover span {
+    color: #dfdfdf;
 }
 
 #sidebar ul li a i {
@@ -212,6 +215,7 @@ i, span {
     margin-right: 0.5em;
     /* font-size: 0.8em; */
 }
+
 
 #sidebar ul li.active>a {
     color: #000;
@@ -322,18 +326,26 @@ a {
 
   
   @media (prefers-color-scheme: dark) {
-    
+    div.wrapper {
+        background-color: #313131;
+    }
     #sidebar{
         background:#404040
     }
     .nav-item a span{
         color:rgb(214, 210, 210);
     }
+    .nav-item a:hover span{
+        color:#333;
+    }
     h3{
         color:rgb(214, 210, 210);
     }
     #sidebar ul li a i {
         color:rgb(214, 210, 210);
+    }
+    #sidebar ul li a:span i {
+        color:#404040;
     }
     body{
         background-color: #404040;
@@ -376,8 +388,8 @@ a {
         border-color: #313131;
     }
     button#timetable-submit-button.btn.btn-primary.btn-sm.w-100{
-        background-color: #313131;
-        border-color: #313131;
+        background-color: #202020;
+        border-color: #202020;
     }
     button#technician-schedule-submit-button.btn.btn-primary.btn-sm.w-100{
         background-color: #313131;
@@ -420,5 +432,8 @@ a {
   @media (prefers-color-scheme: light) {
     #sidebar{
         background:#c5cae3
+    }
+    .list-unstyled> p{
+        color: #181818;
     }
   }
