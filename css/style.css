@@ -321,7 +321,7 @@ a {
 
 
   
-  @media (prefers-color-scheme: darkdark) {
+  @media (prefers-color-scheme: dark) {
     
     #sidebar{
         background:#404040
