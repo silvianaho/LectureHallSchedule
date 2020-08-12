@@ -12,7 +12,7 @@ let totalNoOfLectures = 0;
 const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
 // const host = "http://localhost:3000";
 const pageInfoUrl = host + "/basic/info";
-const basicDataUrl =  host + "/basic/data"; 
+const basicDataUrl = host + "/basic/data";
 
 function getPageInfo() {
   $.get(pageInfoUrl)
@@ -28,7 +28,7 @@ function getPageInfo() {
         `;
         faculty.append(facultyid);
       });
-      
+
       // semester
       result.semesterid.forEach((element) => {
         const semesterid = `
@@ -362,7 +362,7 @@ $(document).ready(() => {
           data: basicDataQuery,
             }
         });
-        
+
         $.ajax(settings).fail((response) => {
 
             console.log("INSERT NEW DATA FAILED!");

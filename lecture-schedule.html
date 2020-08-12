@@ -230,6 +230,7 @@
     function convertTime(time) {
       let firstDigit = String(time).substr(0,1)
       let newtime = String(time)
+      console.log(newtime);
       if (firstDigit != 1) {
         newtime = "0" + newtime;
       }
@@ -268,6 +269,13 @@
         halls.push("Hall " + (i + 1));
         timetable.addLocations([halls[i]]);
         data[i].forEach((lecture) => {
+          console.log(lecture.lectureId,
+            halls[i],
+            new Date("2020/01/01 " + convertTime(lecture.startTime)),
+            new Date("2020/01/01 " + convertTime(lecture.endTime)),
+            {
+              class: 'lecture'
+            });
           timetable.addEvent(
             lecture.lectureId,
             halls[i],
