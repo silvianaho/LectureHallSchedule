@@ -238,12 +238,14 @@
     }
 
     function calculateScope(data) {
-      let earliestTime = parseInt(convertTime(data[0][0].startTime).split(":")[0]);
+      let earliestTime = parseInt(data[0][0].startTime.split(":")[0]);
+      // let earliestTime = parseInt(convertTime(data[0][0].startTime).split(":")[0]);
       var latestTime = 0;
 
       for (let i = 0; i < data.length; i++) {
         data[i].forEach((lecture) => {
-          let end = parseInt(convertTime(lecture.endTime).split(":")[0]) + 1;
+          let end = parseInt(lecture.endTime.split(":")[0]) + 1;
+          // let end = parseInt(convertTime(lecture.endTime).split(":")[0]) + 1;
           if (end > latestTime) latestTime = end;
         });
       }
@@ -271,8 +273,10 @@
         data[i].forEach((lecture) => {
           console.log(lecture.lectureId,
             halls[i],
-            new Date("2020/01/01 " + convertTime(lecture.startTime)),
-            new Date("2020/01/01 " + convertTime(lecture.endTime)),
+            new Date("2020/01/01 " + lecture.startTime),
+            new Date("2020/01/01 " + lecture.endTime),
+            // new Date("2020/01/01 " + convertTime(lecture.startTime)),
+            // new Date("2020/01/01 " + convertTime(lecture.endTime)),
             {
               class: 'lecture'
             });
