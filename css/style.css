@@ -398,6 +398,21 @@ a {
     li.page-item.disabled{
         color:black
     }
+    button#advance-data-last-page.page-link{
+        background-color:gray
+    }
+    button#advance-data-next-page.page-link{
+        background-color:gray
+    }
+    button#advance-data-previous-page.page-link{
+        background-color:gray
+    }
+    button#advance-data-first-page.page-link{
+        background-color:gray
+    }
+    li.page-item.disabled{
+        color:black
+    }
     p.m-0{
         color:white
     }
