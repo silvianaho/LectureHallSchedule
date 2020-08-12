@@ -56,20 +56,6 @@ body {
  
 }
 
-.class.short { width: 20vw; line-height: 20vh; } /* 45min class */
-.class.b15 { margin-right: 2.5vh; } /* after 15 min break */
-.class.b45 { margin-right: 7.5vh; } /* after 45 min break */
-.class.b90 { margin-right: 15vh; } /* after 2x45 min break */
-.class.b135 { margin-right: 22.5vh; } /* after 3x45 min break */
-
-.green { background-color: #bee3ce; }
-.turquoise { background-color: #97ded0; }
-.navy { background-color: #a1ddea; }
-.blue { background-color: #aeb7cd; }
-.grey { background-color: #d1c2ea; color: #202020; }
-.gray { background-color: #f3d0da; }
-
-
 
 .spacing { background-color: transparent; }
 

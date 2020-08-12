@@ -62,25 +62,25 @@ function paginationButtonControl() {
   console.log(dataQuery.page);
   console.log(totalTechnicianPage);
   if (dataQuery.page === 0 && totalTechnicianPage - dataQuery.page != 0 ) {
-    disableButton("#basic-data-first-page");
-    disableButton("#basic-data-previous-page");
-    enableButton("#basic-data-last-page");
-    enableButton("#basic-data-next-page");
+    disableButton("#advance-data-first-page");
+    disableButton("#advance-data-previous-page");
+    enableButton("#advance-data-last-page");
+    enableButton("#advance-data-next-page");
   } else if (dataQuery.page === totalTechnicianPage - 1) {
-    enableButton("#basic-data-first-page");
-    enableButton("#basic-data-previous-page");
-    disableButton("#basic-data-last-page");
-    disableButton("#basic-data-next-page");
+    enableButton("#advance-data-first-page");
+    enableButton("#advance-data-previous-page");
+    disableButton("#advance-data-last-page");
+    disableButton("#advance-data-next-page");
   } else if (dataQuery.page === totalTechnicianPage){
-    disableButton("#basic-data-first-page");
-    disableButton("#basic-data-previous-page");
-    disableButton("#basic-data-last-page");
-    disableButton("#basic-data-next-page");
+    disableButton("#advance-data-first-page");
+    disableButton("#advance-data-previous-page");
+    disableButton("#advance-data-last-page");
+    disableButton("#advance-data-next-page");
   } else {
-    enableButton("#basic-data-first-page");
-    enableButton("#basic-data-previous-page");
-    enableButton("#basic-data-last-page");
-    enableButton("#basic-data-next-page");
+    enableButton("#advance-data-first-page");
+    enableButton("#advance-data-previous-page");
+    enableButton("#advance-data-last-page");
+    enableButton("#advance-data-next-page");
   }
   showEntries();
 }
@@ -190,7 +190,7 @@ $(document).ready(() => {
         console.log("Getting Technician listings failed ;w;");
       })
       .done((response) => {
-        const parent = $("#technicians-list-table");
+        const parent = $("#technician-list-table");
         parent.empty();
         response.forEach((element) => {
           const technicians = `<tr>
