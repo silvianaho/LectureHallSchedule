@@ -1,59 +1,8 @@
-const advanceDataQuery = {
-    facultyId: null,
-    semesterId: null,
-    dayOfWeek: null,
-    page: 0,
-    pageSize: 10,
-  };
-  
-  let totalPage = 0;
-  let totalNoOftechnicians = 0;
-  
-  const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
-  // const host = "http://localhost:3000";
-  const pageInfoUrl = host + "/advance/info";
-  const advanceDataUrl =  host + "/advance/data"; 
-  
-  function getPageInfo() {
-    $.get(pageInfoUrl)
-      .done((result) => {
-        const faculty = $("#faculty-id");
-        const semester = $("#semester-id");
-        const totalCount = $("#total-count");
-  
-        // faculty
-        result.facultyid.forEach((element) => {
-          const facultyid = `
-          <option value="${element.facultyid}">${element.facultyid}</option>
-          `;
-          faculty.append(facultyid);
-        });
-        
-        // semester
-        result.semesterid.forEach((element) => {
-          const semesterid = `
-          <option value="${element.semesterid}">${element.semesterid}</option>
-          `;
-          semester.append(semesterid);
-        });
-        // totalCount
-        totalCount.append(result.totalCount);
-        totalNoOftechnicians = result.totalCount;
-  
-        showEntries();
-  
-        // paginations
-        totalPage = Math.ceil(
-          parseInt(result.totalCount) / advanceDataQuery.pageSize
-        );
-      })
-      .fail((message) => console.log(message));
-  }
-  
+
   function disablePaginationButton() {
    
   
-    if (advanceDataQuery.page === 0) {
+    if (dataquery.page === 0) {
       $("#advance-data-first-page").attr("disabled", true);
       $("#advance-data-first-page").parent().addClass("disabled");
       $("#advance-data-previous-page").attr("disabled", true);
@@ -63,7 +12,7 @@ const advanceDataQuery = {
       $("#advance-data-last-page").parent().removeClass("disabled");
       $("#advance-data-next-page").attr("disabled", false);
       $("#advance-data-next-page").parent().removeClass("disabled");
-    } else if (advanceDataQuery.page === totalPage - 1) {
+    } else if (dataquery.page === totalPage - 1) {
       $("#advance-data-first-page").attr("disabled", false);
       $("#advance-data-first-page").parent().removeClass("disabled");
       $("#advance-data-previous-page").attr("disabled", false);
@@ -92,11 +41,11 @@ const advanceDataQuery = {
     let startId = $("#start-id");
     let endId = $("#end-id");
   
-    let start = advanceDataQuery["page"] * advanceDataQuery["pageSize"] + 1;
+    let start = dataquery["page"] * dataquery["pageSize"] + 1;
     // @ts-ignore
     let end =
-      parseInt(advanceDataQuery["page"] * advanceDataQuery["pageSize"]) +
-      parseInt(advanceDataQuery["pageSize"]);
+      parseInt(dataquery["page"] * dataquery["pageSize"]) +
+      parseInt(dataquery["pageSize"]);
     end > totalNoOftechnicians ? (end = totalNoOftechnicians) : (end = end);
     startId.text(start);
     endId.text(end);
@@ -135,13 +84,13 @@ const advanceDataQuery = {
   
     // Get technician listings as soon as page loads
     var settings = {
-      url: advanceDataUrl,
+      url: TechnicianDataUrl,
       method: "GET",
       timeout: 0,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      data: advanceDataQuery,
+      data: dataquery,
     };
   
     $.ajax(settings)
@@ -174,19 +123,19 @@ const advanceDataQuery = {
     // Search for items on button click
     $("#search-button").on("click", (event) => {
       event.preventDefault();
-      advanceDataQuery.facultyId = $("#faculty-id").val();
-      advanceDataQuery.semesterId = $("#semester-id").val();
-      advanceDataQuery.dayOfWeek = $("#day-of-week").val();
-      advanceDataQuery["page"] = 0;
-      advanceDataQuery["pageSize"] = 10;
+      dataquery.facultyId = $("#faculty-id").val();
+      dataquery.semesterId = $("#semester-id").val();
+      dataquery.dayOfWeek = $("#day-of-week").val();
+      dataquery["page"] = 0;
+      dataquery["pageSize"] = 10;
       settings = {
-        url: advanceDataUrl, //backend search
+        url: TechnicianDataUrl, //backend search
         method: "GET",
         timeout: 0,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        data: advanceDataQuery,
+        data: dataquery,
       };
       $.ajax(settings)
         .fail((response) => {
@@ -214,7 +163,7 @@ const advanceDataQuery = {
             <td>${element.endtime}</td>
             </tr>"`;
             parent.append(technicians);
-            advanceDataQuery.pageSize = response.length;
+            dataquery.pageSize = response.length;
             totalNoOftechnicians = response.length;
           });
           showEntries();
@@ -246,7 +195,7 @@ const advanceDataQuery = {
   
     // pagination
     $("#advance-data-first-page").on("click", (event) => {
-      advanceDataQuery["page"] = 0;
+      dataquery["page"] = 0;
       console.log("navigate to first page");
   
       $.ajax(settings)
@@ -258,7 +207,7 @@ const advanceDataQuery = {
     });
   
     $("#advance-data-previous-page").on("click", (event) => {
-      advanceDataQuery["page"] -= 1;
+      dataquery["page"] -= 1;
       console.log("prev page");
   
       $.ajax(settings)
@@ -270,7 +219,7 @@ const advanceDataQuery = {
     });
   
     $("#advance-data-next-page").on("click", (event) => {
-      advanceDataQuery["page"] += 1;
+      dataquery["page"] += 1;
       console.log("meow");
   
       $.ajax(settings)
@@ -282,7 +231,7 @@ const advanceDataQuery = {
     });
   
     $("#advance-data-last-page").on("click", (event) => {
-      advanceDataQuery["page"] = totalPage - 1;
+      dataquery["page"] = totalPage - 1;
       console.log("meow");
   
       $.ajax(settings)
@@ -296,8 +245,8 @@ const advanceDataQuery = {
     $("#page-size").on("change", (event) => {
       let pageSize = $("#page-size").val();
       totalPage = Math.ceil(totalNoOftechnicians / pageSize);
-      advanceDataQuery["pageSize"] = pageSize;
-      advanceDataQuery["page"] = 0;
+      dataquery["pageSize"] = pageSize;
+      dataquery ["page"] = 0;
   
       $.ajax(settings)
         .done((response) => {
