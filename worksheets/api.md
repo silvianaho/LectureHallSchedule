@@ -589,3 +589,79 @@ GET /advance/result?semesterId=1110000000&facultyId=1100000000&dayOfWeek=4
   "code": 422
 }
 ```
+## Get Additional Data for Frontend
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /advance/info |
+
+### Request Parameters
+
+There is no parameter for this endpoint.
+
+### Response Body
+
+```json
+{
+  "facultyid": [
+    {
+      "facultyid": number
+    }
+  ],
+  "semesterid": [
+    {
+      "semesterid": number
+    }
+  ],
+  "totalCount": number
+}
+```
+
+### Error
+
+```json
+{
+  "error": string,
+  "code": number
+}
+```
+
+### Sample Request
+
+```http
+GET /advance/info
+```
+
+### Sample Response
+
+```json
+{
+  "facultyid": [
+    {
+      "facultyid": "1111111111"
+    },
+    {
+      "facultyid": "2000999978"
+    }
+  ],
+  "semesterid": [
+    {
+      "semesterid": "1000999988"
+    },
+    {
+      "semesterid": "2000999988"
+    }
+  ],
+  "totalCount": "13"
+}
+```
+
+### Sample Error
+
+```json
+{
+  "error": "Not Found",
+  "code": 404
+}
+```
