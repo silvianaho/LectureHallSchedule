@@ -376,6 +376,12 @@ a {
     span{
         color:white;
     }
+    button:not(:disabled){
+        color: white;
+    }
+    button:disabled{
+        color: #181818;
+    }
     #sidebar .sidebar-header{
         color:rgb(214, 210, 210);
     }
