@@ -6,7 +6,7 @@ const dataQuery = {
   pageSize: 10,
 };
 
-let totalTechnicianPage = 0;
+let totalPage = 0;
 let totalNoOftechnicians = 0;
 
 const host = "https://fsp-jibaboom-2a14-teamsos.herokuapp.com";
@@ -460,7 +460,7 @@ $(document).ready(() => {
     dataQuery ["page"] = 0;
 
     $.ajax(settings)
-      .done((response) => {
+      .done((response) => { 
         populateTable(response);
         disablePaginationButton();
       })
