@@ -18,13 +18,13 @@ var intervalScheduling = function intervalScheduling(lectures) {
 
   for (var i = 0; i < lectures.length; i++) {
     var lecture = {
-      lectureId: lectures[i].lectureid,
-      startTime: convertTimeToInt(lectures[i].starttime),
-      endTime: convertTimeToInt(lectures[i].endtime)
+      lectureId: parseInt(lectures[i].lectureid, 10),
+      startTime: convertTimeToInt(lectures[i].starttime).toString(),
+      endTime: convertTimeToInt(lectures[i].endtime).toString()
     };
-    var start = lecture.startTime;
+    var start = parseInt(lecture.startTime, 10); // console.log(start, convertTimeToInt(earliestEndTime[0].time));
 
-    if (earliestEndTime[0] !== undefined && start >= earliestEndTime[0].time) {
+    if (earliestEndTime[0] !== undefined && start >= parseInt(earliestEndTime[0].time, 10)) {
       halls[earliestEndTime[0].hallNo].push(lecture);
       earliestEndTime[0] = {
         time: lecture.endTime,

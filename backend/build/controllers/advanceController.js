@@ -135,7 +135,9 @@ var getTechnicians = /*#__PURE__*/function () {
           case 7:
             return _context2.abrupt("return", {
               error: null,
-              result: data.rows
+              result: {
+                data: data.rows
+              }
             });
 
           case 10:
@@ -274,25 +276,41 @@ var getTechSurplus = /*#__PURE__*/function () {
 
           case 6:
             technicianData = _context4.sent;
-            result = (0, _algo.overlappingInterval)(lectureData.rows, technicianData.rows); // console.log(result);
+            result = (0, _algo.overlappingInterval)(lectureData.rows, technicianData.rows);
 
-            if (result.length === 0) createErrorResponse("Sorry, we could not find what you asked for", 404);
+            if (!(result.length === 0)) {
+              _context4.next = 10;
+              break;
+            }
+
+            return _context4.abrupt("return", createErrorResponse("Sorry, we could not find what you asked for", 404));
+
+          case 10:
             return _context4.abrupt("return", {
               error: null,
               result: result
             });
 
-          case 12:
-            _context4.prev = 12;
+          case 13:
+            _context4.prev = 13;
             _context4.t0 = _context4["catch"](0);
-            createErrorResponse("Internal Server Error", 500);
 
-          case 15:
+            if (!(_context4.t0.code === "53300")) {
+              _context4.next = 17;
+              break;
+            }
+
+            return _context4.abrupt("return", createErrorResponse("DBERROR: Too Many Connections", 500));
+
+          case 17:
+            return _context4.abrupt("return", createErrorResponse("Internal Server Error", 500));
+
+          case 18:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 12]]);
+    }, _callee4, null, [[0, 13]]);
   }));
 
   return function getTechSurplus(_x3) {

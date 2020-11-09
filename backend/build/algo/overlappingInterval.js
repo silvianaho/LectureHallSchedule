@@ -19,8 +19,8 @@ var overlappingInterval = function overlappingInterval(lectures, technicians) {
   for (var i = 0; i < lectures.length; i++) {
     var lecture = lectures[i];
     var start = convertTimeToInt(lecture.starttime);
-    var end = convertTimeToInt(lecture.endtime);
-    console.log(start, end); // eslint-disable-next-line no-continue
+    var end = convertTimeToInt(lecture.endtime); // console.log(start, end);
+    // eslint-disable-next-line no-continue
 
     if (timeList.includes(start) && timeList.includes(end)) continue;else if (timeList.includes(start)) timeList.push(end);else if (timeList.includes(end)) timeList.push(start);else timeList.push(end, start);
   }
@@ -43,8 +43,8 @@ var overlappingInterval = function overlappingInterval(lectures, technicians) {
 
   timeList.sort(function (a, b) {
     return a - b;
-  });
-  console.log(timeList); // construct timepair from timeList
+  }); // console.log(timeList);
+  // construct timepair from timeList
 
   var timePair = [];
 

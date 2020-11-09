@@ -52,7 +52,7 @@ export const getTechnicians = async (queryString) => {
     const data = await advanceModel.select("*", `${queryString}`);
     if (data.rows.length === 0)
       return createErrorResponse("Not Found", 404);
-    return { error: null, result: data.rows };
+    return { error: null, result: { data: data.rows } };
   } catch (err) {
     // eslint-disable-next-line no-console
     console.log(err);
@@ -96,11 +96,13 @@ export const getTechSurplus = async (queryString) => {
     const lectureData = await basicModel.select("*", `${queryString}`);
     const technicianData = await advanceModel.select("*", `${queryString}`);
     const result = overlappingInterval(lectureData.rows, technicianData.rows);
-    // console.log(result);
     if (result.length === 0)
-      createErrorResponse("Sorry, we could not find what you asked for", 404);
+      return createErrorResponse("Sorry, we could not find what you asked for", 404);
     return { error: null, result };
   } catch (err) {
-    createErrorResponse("Internal Server Error", 500);
+    if (err.code === "53300") {
+      return createErrorResponse("DBERROR: Too Many Connections", 500);
+    }
+    return createErrorResponse("Internal Server Error", 500);
   }
 };

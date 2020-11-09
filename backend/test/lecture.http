@@ -52,10 +52,10 @@ Content-Type: application/json
 {
     "data" : [
         {
-            "lectureId": 021563822,
+            "lectureId": 1210638220,
             "semesterId": 1234567890,
             "facultyId": 1234567890,
-            "dayOfWeek": 5,
+            "dayOfWeek": 3,
             "startTime": "1600",
             "endTime": "1730"
         }

@@ -13,7 +13,7 @@ export const overlappingInterval = (lectures, technicians) => {
     const start = convertTimeToInt(lecture.starttime);
     const end = convertTimeToInt(lecture.endtime);
 
-    console.log(start, end);
+    // console.log(start, end);
     // eslint-disable-next-line no-continue
     if (timeList.includes(start) && timeList.includes(end)) continue;
     else if (timeList.includes(start)) timeList.push(end);
@@ -39,7 +39,7 @@ export const overlappingInterval = (lectures, technicians) => {
   }
 
   timeList.sort((a, b) => a - b);
-  console.log(timeList);
+  // console.log(timeList);
   // construct timepair from timeList
   const timePair = [];
   for (let i = 0; i < timeList.length - 1; i++) {

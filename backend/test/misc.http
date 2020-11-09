@@ -1,0 +1,6 @@
+@geturl = http://localhost:3000/basic/info
+# @geturl = http://localhost:3000/advance/info
+@getMethod = GET
+###
+{{getMethod}} {{geturl}} HTTP/1.1
+Content-Type: application/json

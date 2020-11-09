@@ -7,7 +7,8 @@ dotenv.config();
 const config = {
   connectionString,
   // maximum number of clients the pool should contain
-  max: 10,
+  max: 5,
+  min: 0,
 };
 
 export const pool = new Pool(config);

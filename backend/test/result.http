@@ -16,3 +16,6 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/advance/result?semesterId=1110000000&facultyId=1100000000&dayOfWeek=4 HTTP/1.1
 Content-Type: application/json
+###
+GET http://localhost:3000/advance/result?facultyId=9900000001&semesterId=9990000007&dayOfWeek=1 HTTP/1.1
+Content-Type: application/json

@@ -26,7 +26,7 @@ export const transformQueriesCompute = (req, res, next) => {
     if (baseUrl === "/basic/result") {
       getHalls(req.query.queryString).then((result) => {
         if (result.error) return next(result.error);
-        return res.status(200).json(result.result);
+        return res.status(200).json({ result: result.result });
       });
     } else if (baseUrl === "/advance/result") {
       getTechSurplus(req.query.queryString).then((result) => {

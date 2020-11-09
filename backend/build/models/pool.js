@@ -18,7 +18,8 @@ _dotenv["default"].config();
 var config = {
   connectionString: _settings.connectionString,
   // maximum number of clients the pool should contain
-  max: 10
+  max: 5,
+  min: 0
 };
 var pool = new _pg.Pool(config);
 exports.pool = pool;

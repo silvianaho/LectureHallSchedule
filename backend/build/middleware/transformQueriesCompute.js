@@ -40,7 +40,9 @@ var transformQueriesCompute = function transformQueriesCompute(req, res, next) {
     if (baseUrl === "/basic/result") {
       (0, _controllers.getHalls)(req.query.queryString).then(function (result) {
         if (result.error) return next(result.error);
-        return res.status(200).json(result.result);
+        return res.status(200).json({
+          result: result.result
+        });
       });
     } else if (baseUrl === "/advance/result") {
       (0, _controllers.getTechSurplus)(req.query.queryString).then(function (result) {
